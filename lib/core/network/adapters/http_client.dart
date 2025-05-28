@@ -5,7 +5,15 @@ import 'package:dolar_hoy/core/network/adapters/http_connector.dart';
 /// En otras palabras los endpoints de los backend conectados
 class HttpClient {
   /// Lista de conexiones a diversos backends
-  final Map<String, HttpConnector> connections = {};
+  final Map<String, HttpConnector> connections = {
+    'py-dollar': HttpConnector(
+      url: 'https://pydolarve.org/api/v2/',
+      header: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    ),
+  };
 
   /// El connector seleccionado
   final String selectedConnector;
