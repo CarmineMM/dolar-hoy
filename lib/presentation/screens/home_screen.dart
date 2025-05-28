@@ -8,6 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Welcome to Dolar Hoy')));
+    return Scaffold(body: Center(child: Text('Dolar Hoy Venezuela')));
   }
 }
