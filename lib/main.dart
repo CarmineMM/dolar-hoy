@@ -1,6 +1,6 @@
-import 'package:dolar_hoy/config/constants/environment.dart';
-import 'package:dolar_hoy/config/router/app_router.dart';
-import 'package:dolar_hoy/config/theme/app_theme.dart';
+import 'package:dolar_hoy/core/constants/environment.dart';
+import 'package:dolar_hoy/core/router/app_router.dart';
+import 'package:dolar_hoy/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
