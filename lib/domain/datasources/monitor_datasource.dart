@@ -2,6 +2,6 @@
 // It should contain methods to fetch monitor data from the PyDolar API or any other source.
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 
-abstract class MonitorPyDolarDatasource {
+abstract class MonitorDatasource {
   Future<List<Monitor>> getAll(String currency);
 }

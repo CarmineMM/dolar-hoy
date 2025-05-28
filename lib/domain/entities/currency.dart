@@ -2,8 +2,8 @@ class Currency {
   final String name;
   final String pluralName;
   final String shortName;
-  final SymbolPosition symbol;
-  final String symbolPosition;
+  final String symbol;
+  final SymbolPosition symbolPosition;
   final String isoCode;
   final String isoNumeric;
   final int decimalDigits;
