@@ -3,6 +3,7 @@ import 'package:dolar_hoy/domain/datasources/monitor_datasource.dart';
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/infrastructure/mappers/monitor_mapper.dart';
 import 'package:dolar_hoy/infrastructure/models/monitor_model.dart';
+import 'package:flutter/material.dart';
 
 class MonitorPyDolarVeDatasource extends MonitorDatasource {
   final String connection = 'py-dollar';
@@ -24,6 +25,8 @@ class MonitorPyDolarVeDatasource extends MonitorDatasource {
 
       return monitors;
     } catch (e) {
+      debugPrint('Error al obtener los monitores:');
+      print(e);
       return [];
     }
   }
