@@ -1,13 +1,22 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:dolar_hoy/core/router/app_router.dart';
 import 'package:dolar_hoy/core/theme/app_theme.dart';
+import 'package:dolar_hoy/infrastructure/datasources/monitor_py_dolarve_datasource.dart';
+import 'package:dolar_hoy/infrastructure/repositories/monitor_repository_impl.dart';
+import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
 
-  runApp(const MainApp());
+  runApp(
+    BlocProvider(
+      create: (context) => MonitorBloc(repository: MonitorRepositoryImpl(MonitorPyDolarVeDatasource())),
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {

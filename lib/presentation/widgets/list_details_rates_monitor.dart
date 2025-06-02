@@ -1,29 +1,14 @@
 import 'package:dolar_hoy/domain/entities/monitor.dart';
-import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class ListDetailsRatesMonitor extends StatefulWidget {
+class ListDetailsRatesMonitor extends StatelessWidget {
   final List<Monitor> monitors;
 
   const ListDetailsRatesMonitor({super.key, required this.monitors});
 
   @override
-  State<ListDetailsRatesMonitor> createState() => _ListDetailsRatesMonitorState();
-}
-
-class _ListDetailsRatesMonitorState extends State<ListDetailsRatesMonitor> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<MonitorBloc>().add(MonitorGetData(currency: 'dollar'));
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final monitors = context.read<MonitorBloc>().state.monitors;
-
     return Card(
       child: SizedBox(
         height: 300,
