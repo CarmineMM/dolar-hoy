@@ -22,4 +22,8 @@ class Monitor {
     required this.pricePrevious,
     required this.lastUpdate,
   });
+
+  String display() {
+    return currency.symbol + price.toString();
+  }
 }

@@ -3,5 +3,5 @@
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 
 abstract class MonitorDatasource {
-  Future<List<Monitor>> getAll(String currency);
+  Future<List<Monitor>> getAll(String currency, {String page = 'criptodolar'});
 }

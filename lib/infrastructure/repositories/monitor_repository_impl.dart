@@ -5,7 +5,7 @@ class MonitorRepositoryImpl extends MonitorRepository {
   MonitorRepositoryImpl(super.datasource);
 
   @override
-  Future<List<Monitor>> getAll(String currency) {
-    return datasource.getAll(currency);
+  Future<List<Monitor>> getAll(String currency, {String page = 'criptodolar'}) {
+    return datasource.getAll(currency, page: page);
   }
 }

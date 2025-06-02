@@ -6,5 +6,5 @@ abstract class MonitorRepository {
 
   MonitorRepository(this.datasource);
 
-  Future<List<Monitor>> getAll(String currency);
+  Future<List<Monitor>> getAll(String currency, {String page = 'criptodolar'});
 }
