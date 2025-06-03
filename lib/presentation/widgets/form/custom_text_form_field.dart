@@ -6,8 +6,19 @@ class CustomTextFormField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final Widget? prefixIcon;
+  final String? initialValue;
+  final TextEditingController? controller;
 
-  const CustomTextFormField({super.key, this.onChanged, this.validator, this.label, this.hintText, this.prefixIcon});
+  const CustomTextFormField({
+    super.key,
+    this.onChanged,
+    this.validator,
+    this.label,
+    this.hintText,
+    this.prefixIcon,
+    this.initialValue,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +30,8 @@ class CustomTextFormField extends StatelessWidget {
     );
 
     return TextFormField(
+      controller: controller,
+      initialValue: initialValue,
       onChanged: onChanged,
       validator: validator,
       decoration: InputDecoration(

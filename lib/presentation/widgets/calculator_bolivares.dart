@@ -1,5 +1,6 @@
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/widgets/form/convert_text_form_field.dart';
 import 'package:dolar_hoy/presentation/widgets/form/custom_text_form_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -24,19 +25,18 @@ class _CalculatorBolivaresState extends State<CalculatorBolivares> {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            CustomTextFormField(
-              hintText: monitor.currency.pluralName,
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Align(
-                  widthFactor: 1,
-                  heightFactor: 1,
-                  child: Text(monitor.currency.symbol, style: const TextStyle(fontSize: 16, height: 1.5)),
-                ),
-              ),
-            ),
+            // Monto base (USD, EUR, etc..)
+            ConvertTextFormField(monitor: monitor, onChanged: context.read<ConvertCubit>().toLocalCurrency),
+
             const SizedBox(height: 20),
-            CustomTextFormField(hintText: convert.localCurrency.pluralName),
+
+            // Monto local (VES)
+            ConvertTextFormField(
+              monitor: monitor,
+              symbol: convert.localCurrency.symbol,
+              onChanged: context.read<ConvertCubit>().toBaseCurrency,
+              hintText: convert.localCurrency.pluralName,
+            ),
           ],
         ),
       ),

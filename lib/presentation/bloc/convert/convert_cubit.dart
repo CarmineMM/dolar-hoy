@@ -45,4 +45,9 @@ class ConvertCubit extends Cubit<ConvertState> {
   void setLocalCurrency(Currency currency) {
     emit(state.copyWith(localCurrency: currency));
   }
+
+  // Reset el monto base y local
+  void resetAmount(Monitor monitor) {
+    emit(state.copyWith(baseAmount: 1, localAmount: monitor.price));
+  }
 }
