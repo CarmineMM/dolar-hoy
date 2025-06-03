@@ -1,6 +1,5 @@
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ListDetailsRatesMonitor extends StatelessWidget {
   final List<Monitor> monitors;
@@ -9,9 +8,11 @@ class ListDetailsRatesMonitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Card(
       child: SizedBox(
-        height: 300,
+        height: screenSize.width > 768 ? 500 : 300,
         child: ListView.builder(
           itemCount: monitors.length,
           itemBuilder: (context, index) {

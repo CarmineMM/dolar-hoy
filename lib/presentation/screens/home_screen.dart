@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(title: Text(Environment.appName)),
       body: BlocConsumer<MonitorBloc, MonitorState>(
@@ -53,13 +55,22 @@ class _HomeScreenState extends State<HomeScreen> {
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                child: Column(
-                  children: [
-                    ListDetailsRatesMonitor(monitors: state.monitors),
-                    const SizedBox(height: 20),
-                    CalculatorCardMonitor(),
-                  ],
-                ),
+                child: screenSize.width > 768
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(flex: 2, child: ListDetailsRatesMonitor(monitors: state.monitors)),
+                          const SizedBox(width: 20),
+                          Expanded(flex: 1, child: CalculatorCardMonitor()),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          ListDetailsRatesMonitor(monitors: state.monitors),
+                          const SizedBox(height: 20),
+                          CalculatorCardMonitor(),
+                        ],
+                      ),
               ),
             );
           }

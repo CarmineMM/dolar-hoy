@@ -12,7 +12,6 @@ class SelectMonitorDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final monitor = context.watch<SettingsCubit>().state.monitor;
     final monitorState = context.read<MonitorBloc>().state as MonitorLoaded;
-    final convert = context.watch<ConvertCubit>().state;
 
     final colors = Theme.of(context).colorScheme;
 

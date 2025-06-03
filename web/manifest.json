@@ -1,11 +1,11 @@
 {
-    "name": "dolar_hoy",
-    "short_name": "dolar_hoy",
+    "name": "Dólar Hoy",
+    "short_name": "Dólar Hoy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Revisa el valor del dolar en Venezuela de forma sencilla y rápida.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
