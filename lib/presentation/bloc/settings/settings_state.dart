@@ -1,10 +1,12 @@
 part of 'settings_cubit.dart';
 
-sealed class SettingsState extends Equatable {
-  const SettingsState();
+class SettingsState extends Equatable {
+  final Monitor monitor;
+
+  const SettingsState({required this.monitor});
 
   @override
-  List<Object> get props => [];
-}
+  List<Object> get props => [monitor];
 
-final class SettingsInitial extends SettingsState {}
+  SettingsState copyWith({Monitor? monitor}) => SettingsState(monitor: monitor ?? this.monitor);
+}

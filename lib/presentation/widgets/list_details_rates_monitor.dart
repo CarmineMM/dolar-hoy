@@ -9,7 +9,6 @@ class ListDetailsRatesMonitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(monitors);
     return Card(
       child: SizedBox(
         height: 300,

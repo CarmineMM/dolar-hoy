@@ -1,7 +1,6 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
-import 'package:dolar_hoy/infrastructure/datasources/monitor_py_dolarve_datasource.dart';
-import 'package:dolar_hoy/infrastructure/repositories/monitor_repository_impl.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
+import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator_bolivares.dart';
 import 'package:dolar_hoy/presentation/widgets/list_details_rates_monitor.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
     context.read<MonitorBloc>().add(MonitorGetData(currency: 'dollar'));
+
+    context.read<SettingsCubit>().selectMonitorFromMonitorsList(context.read<MonitorBloc>().state.monitors);
   }
 
   @override

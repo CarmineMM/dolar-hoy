@@ -26,7 +26,6 @@ class MonitorPyDolarVeDatasource extends MonitorDatasource {
       return monitors;
     } catch (e) {
       debugPrint('Error al obtener los monitores:');
-      print(e);
       return [];
     }
   }
