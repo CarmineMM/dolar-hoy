@@ -15,4 +15,9 @@ class SettingsCubit extends Cubit<SettingsState> {
       state.copyWith(monitor: monitors.firstWhere((monitor) => monitor.name == 'bcv', orElse: () => monitors.first)),
     );
   }
+
+  /// Cambiar el monitor seleccionado
+  void changeMonitor(Monitor monitor) {
+    emit(state.copyWith(monitor: monitor));
+  }
 }

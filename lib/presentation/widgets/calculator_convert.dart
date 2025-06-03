@@ -39,39 +39,43 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
   Widget build(BuildContext context) {
     final monitor = context.watch<SettingsCubit>().state.monitor;
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: BlocBuilder<ConvertCubit, ConvertState>(
-          builder: (context, convertState) {
-            print(convertState);
+    return BlocBuilder<ConvertCubit, ConvertState>(
+      builder: (context, convertState) {
+        final newBaseAmountText = convertState.baseAmount.toStringAsFixed(2);
+        final newLocalAmountText = convertState.localAmount.toStringAsFixed(2);
 
-            return Column(
-              children: [
-                // Monto base (USD, EUR, etc..)
-                ConvertTextFormField(
-                  controller: _baseAmountController,
-                  monitor: monitor,
-                  onChanged: context.read<ConvertCubit>().toLocalCurrency,
-                  // resetValues: context.read<ConvertCubit>().resetAmount,
-                ),
+        if (_baseAmountController.text != newBaseAmountText && !_baseAmountController.selection.isValid) {
+          _baseAmountController.text = newBaseAmountText;
+        }
 
-                const SizedBox(height: 20),
+        if (_localAmountController.text != newLocalAmountText && !_localAmountController.selection.isValid) {
+          _localAmountController.text = newLocalAmountText;
+        }
 
-                // Monto local (VES)
-                ConvertTextFormField(
-                  controller: _localAmountController,
-                  monitor: monitor,
-                  symbol: convertState.localCurrency.symbol,
-                  onChanged: context.read<ConvertCubit>().toBaseCurrency,
-                  hintText: convertState.localCurrency.pluralName,
-                  // resetValues: context.read<ConvertCubit>().resetAmount,
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+        return Column(
+          children: [
+            // Monto base (USD, EUR, etc..)
+            ConvertTextFormField(
+              controller: _baseAmountController,
+              monitor: monitor,
+              onChanged: context.read<ConvertCubit>().toLocalCurrency,
+              resetValues: context.read<ConvertCubit>().resetAmount,
+            ),
+
+            const SizedBox(height: 20),
+
+            // Monto local (VES)
+            ConvertTextFormField(
+              controller: _localAmountController,
+              monitor: monitor,
+              symbol: convertState.localCurrency.symbol,
+              onChanged: context.read<ConvertCubit>().toBaseCurrency,
+              hintText: convertState.localCurrency.pluralName,
+              resetValues: context.read<ConvertCubit>().resetAmount,
+            ),
+          ],
+        );
+      },
     );
   }
 }

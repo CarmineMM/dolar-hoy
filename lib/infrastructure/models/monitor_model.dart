@@ -6,16 +6,12 @@ class MonitorModel {
 
   factory MonitorModel.fromJson(Map<String, dynamic> json) => MonitorModel(
     datetime: Datetime.fromJson(json["datetime"]),
-    monitors: Map.from(json["monitors"]).map(
-      (k, v) => MapEntry<String, MonitorDatum>(k, MonitorDatum.fromJson(v)),
-    ),
+    monitors: Map.from(json["monitors"]).map((k, v) => MapEntry<String, MonitorDatum>(k, MonitorDatum.fromJson(v))),
   );
 
   Map<String, dynamic> toJson() => {
     "datetime": datetime.toJson(),
-    "monitors": Map.from(
-      monitors,
-    ).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+    "monitors": Map.from(monitors).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
   };
 }
 
@@ -25,8 +21,7 @@ class Datetime {
 
   Datetime({required this.date, required this.time});
 
-  factory Datetime.fromJson(Map<String, dynamic> json) =>
-      Datetime(date: json["date"], time: json["time"]);
+  factory Datetime.fromJson(Map<String, dynamic> json) => Datetime(date: json["date"], time: json["time"]);
 
   Map<String, dynamic> toJson() => {"date": date, "time": time};
 }
@@ -79,13 +74,12 @@ class MonitorDatum {
   };
 }
 
+// ignore: constant_identifier_names
 enum Color { GREEN, NEUTRAL }
 
-final colorValues = EnumValues({
-  "green": Color.GREEN,
-  "neutral": Color.NEUTRAL,
-});
+final colorValues = EnumValues({"green": Color.GREEN, "neutral": Color.NEUTRAL});
 
+// ignore: constant_identifier_names
 enum Symbol { EMPTY, SYMBOL }
 
 final symbolValues = EnumValues({"▲": Symbol.EMPTY, "": Symbol.SYMBOL});
