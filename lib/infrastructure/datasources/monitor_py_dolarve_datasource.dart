@@ -10,23 +10,18 @@ class MonitorPyDolarVeDatasource extends MonitorDatasource {
 
   @override
   Future<List<Monitor>> getAll(String currency, {String page = 'criptodolar'}) async {
-    try {
-      final response = await HttpImplementer.get(
-        connection,
-        '/$currency',
-        queryParameters: {'page': page, 'format_date': 'iso', 'rounded_price': 'false'},
-      );
+    final response = await HttpImplementer.get(
+      connection,
+      '/$currency',
+      queryParameters: {'page': page, 'format_date': 'iso', 'rounded_price': 'false'},
+    );
 
-      if (response.statusCode != 200 || response.data == null) {
-        return [];
-      }
-
-      final monitors = MonitorMapper.fromModelToEntity(MonitorModel.fromJson(response.data), currency);
-
-      return monitors;
-    } catch (e) {
-      debugPrint('Error al obtener los monitores:');
+    if (response.statusCode != 200 || response.data == null) {
       return [];
     }
+
+    final monitors = MonitorMapper.fromModelToEntity(MonitorModel.fromJson(response.data), currency);
+
+    return monitors;
   }
 }
