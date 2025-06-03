@@ -38,6 +38,8 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
   @override
   Widget build(BuildContext context) {
     final monitor = context.watch<SettingsCubit>().state.monitor;
+    print('===============CalculatorConvert');
+    print(monitor);
 
     return BlocBuilder<ConvertCubit, ConvertState>(
       builder: (context, convertState) {

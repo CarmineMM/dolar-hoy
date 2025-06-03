@@ -20,9 +20,7 @@ class ListDetailsRatesMonitor extends StatelessWidget {
             return ListTile(
               title: Text(monitor.title),
               trailing: Text('Bs. ${monitor.price}'),
-              subtitle: monitor.lastUpdate != null
-                  ? Text(DateFormat('dd/MM/yyyy hh:mm a').format(monitor.lastUpdate!.toLocal()))
-                  : null,
+              subtitle: monitor.lastUpdate != null ? Text(monitor.lastUpdateString) : null,
             );
           },
         ),

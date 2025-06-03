@@ -9,10 +9,11 @@ class SelectMonitorDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final monitor = context.watch<SettingsCubit>().state.monitor;
+    final monitorState = context.read<MonitorBloc>().state as MonitorLoaded;
+
     final colors = Theme.of(context).colorScheme;
 
-    final monitor = context.read<SettingsCubit>().state.monitor;
-    final monitorState = context.read<MonitorBloc>().state as MonitorLoaded;
     final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: colors.primary),

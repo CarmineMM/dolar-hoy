@@ -1,4 +1,5 @@
 import 'package:dolar_hoy/domain/entities/currency.dart';
+import 'package:intl/intl.dart';
 
 class Monitor {
   final Currency currency;
@@ -26,6 +27,9 @@ class Monitor {
   String display() {
     return currency.symbol + price.toString();
   }
+
+  String get lastUpdateString =>
+      lastUpdate != null ? DateFormat('dd/MM/yyyy hh:mm a').format(lastUpdate!.toLocal()) : '';
 
   Monitor copyWith({
     Currency? currency,
