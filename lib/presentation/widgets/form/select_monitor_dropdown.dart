@@ -1,4 +1,5 @@
 import 'package:dolar_hoy/domain/entities/monitor.dart';
+import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class SelectMonitorDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final monitor = context.watch<SettingsCubit>().state.monitor;
     final monitorState = context.read<MonitorBloc>().state as MonitorLoaded;
+    final convert = context.watch<ConvertCubit>().state;
 
     final colors = Theme.of(context).colorScheme;
 
@@ -24,6 +26,7 @@ class SelectMonitorDropdown extends StatelessWidget {
       value: monitor,
       onChanged: (value) {
         context.read<SettingsCubit>().changeMonitor(value!);
+        context.read<ConvertCubit>().toLocalCurrency(value, 31);
       },
       decoration: InputDecoration(labelText: 'Monitor de tasas', isDense: true, border: border),
       items: monitorState.monitors
