@@ -1,3 +1,4 @@
+import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:dolar_hoy/presentation/widgets/form/custom_text_form_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,9 +14,10 @@ class CalculatorBolivares extends StatefulWidget {
 class _CalculatorBolivaresState extends State<CalculatorBolivares> {
   @override
   Widget build(BuildContext context) {
-    final settingsCubit = context.watch<SettingsCubit>();
+    final monitor = context.watch<SettingsCubit>().state.monitor;
+    final convert = context.watch<ConvertCubit>().state;
 
-    print(settingsCubit.state.monitor.currency);
+    print(convert);
 
     return Card(
       child: Padding(
@@ -23,21 +25,18 @@ class _CalculatorBolivaresState extends State<CalculatorBolivares> {
         child: Column(
           children: [
             CustomTextFormField(
-              hintText: 'Hola',
+              hintText: monitor.currency.pluralName,
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Align(
                   widthFactor: 1,
                   heightFactor: 1,
-                  child: Text(
-                    settingsCubit.state.monitor.currency.symbol,
-                    style: const TextStyle(fontSize: 16, height: 1.5),
-                  ),
+                  child: Text(monitor.currency.symbol, style: const TextStyle(fontSize: 16, height: 1.5)),
                 ),
               ),
             ),
             const SizedBox(height: 20),
-            CustomTextFormField(label: 'Hola'),
+            CustomTextFormField(hintText: convert.localCurrency.pluralName),
           ],
         ),
       ),

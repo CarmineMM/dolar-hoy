@@ -1,4 +1,5 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
+import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator_bolivares.dart';
@@ -31,7 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocConsumer<MonitorBloc, MonitorState>(
         listener: (context, state) {
           if (state is MonitorLoaded) {
-            context.read<SettingsCubit>().selectMonitorFromMonitorsList(state.monitors);
+            final readSetting = context.read<SettingsCubit>();
+
+            readSetting.selectMonitorFromMonitorsList(state.monitors);
+
+            // context.read<ConvertCubit>().toLocalCurrency(readSetting.state.monitor, 1);
           }
         },
         builder: (context, state) {
