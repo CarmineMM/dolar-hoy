@@ -9,19 +9,19 @@ part 'monitor_state.dart';
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   final MonitorRepository repository;
 
-  MonitorBloc({required this.repository}) : super(MonitorState()) {
-    on<MonitorGetData>(_onGetData);
+  MonitorBloc({required this.repository}) : super(MonitorInitial()) {
+    on<MonitorGetData>(_onMonitorGetData);
   }
 
   // Obtener la data
-  Future<void> _onGetData(MonitorGetData event, Emitter<MonitorState> emit) async {
+  Future<void> _onMonitorGetData(MonitorGetData event, Emitter<MonitorState> emit) async {
+    emit(MonitorLoading());
     try {
       final monitors = await repository.getAll(event.currency);
 
-      emit(state.copyWith(monitors: [...state.monitors, ...monitors]));
+      emit(MonitorLoaded(monitors: monitors));
     } catch (e) {
-      // Manejo de errores, podrías emitir un estado de error si es necesario
-      print('Error fetching monitor data: $e');
+      emit(MonitorError(message: e.toString()));
     }
   }
 }

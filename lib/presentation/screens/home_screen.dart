@@ -22,27 +22,46 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     context.read<MonitorBloc>().add(MonitorGetData(currency: 'dollar'));
-
-    context.read<SettingsCubit>().selectMonitorFromMonitorsList(context.read<MonitorBloc>().state.monitors);
   }
 
   @override
   Widget build(BuildContext context) {
-    final monitors = context.read<MonitorBloc>().state.monitors;
-
     return Scaffold(
       appBar: AppBar(title: Text(Environment.appName)),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          child: Column(
-            children: [
-              ListDetailsRatesMonitor(monitors: monitors),
-              const SizedBox(height: 20),
-              CalculatorBolivares(),
-            ],
-          ),
-        ),
+      body: BlocConsumer<MonitorBloc, MonitorState>(
+        listener: (context, state) {
+          if (state is MonitorLoaded) {
+            context.read<SettingsCubit>().selectMonitorFromMonitorsList(state.monitors);
+          }
+        },
+        builder: (context, state) {
+          // Carga de los monitores
+          if (state is MonitorLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          // Error en la carga de monitores
+          if (state is MonitorError) {
+            return Center(child: Text(state.message));
+          }
+
+          // Listado de monitores
+          if (state is MonitorLoaded) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                child: Column(
+                  children: [
+                    ListDetailsRatesMonitor(monitors: state.monitors),
+                    const SizedBox(height: 20),
+                    CalculatorBolivares(),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          return const Center(child: Text('No hay data disponible para mostrar'));
+        },
       ),
     );
   }

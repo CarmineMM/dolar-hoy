@@ -15,14 +15,27 @@ class _CalculatorBolivaresState extends State<CalculatorBolivares> {
   Widget build(BuildContext context) {
     final settingsCubit = context.watch<SettingsCubit>();
 
-    print(settingsCubit.state.monitor);
+    print(settingsCubit.state.monitor.currency);
 
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            CustomTextFormField(hintText: 'Hola'),
+            CustomTextFormField(
+              hintText: 'Hola',
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Align(
+                  widthFactor: 1,
+                  heightFactor: 1,
+                  child: Text(
+                    settingsCubit.state.monitor.currency.symbol,
+                    style: const TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
             CustomTextFormField(label: 'Hola'),
           ],
