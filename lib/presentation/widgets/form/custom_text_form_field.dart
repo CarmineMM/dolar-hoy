@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final String? initialValue;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   const CustomTextFormField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.initialValue,
     this.controller,
+    this.keyboardType,
   });
 
   @override
@@ -31,6 +33,7 @@ class CustomTextFormField extends StatelessWidget {
 
     return TextFormField(
       controller: controller,
+      keyboardType: keyboardType,
       initialValue: initialValue,
       onChanged: onChanged,
       validator: validator,

@@ -8,6 +8,7 @@ class ConvertTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? symbol;
   final String? hintText;
+  final void Function(Monitor monitor)? resetValues;
 
   const ConvertTextFormField({
     super.key,
@@ -16,6 +17,7 @@ class ConvertTextFormField extends StatelessWidget {
     this.controller,
     this.symbol,
     this.hintText,
+    this.resetValues,
   });
 
   @override
@@ -23,6 +25,7 @@ class ConvertTextFormField extends StatelessWidget {
     return CustomTextFormField(
       controller: controller,
       hintText: hintText ?? monitor.currency.pluralName,
+      keyboardType: TextInputType.number,
       prefixIcon: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: Align(
@@ -32,7 +35,11 @@ class ConvertTextFormField extends StatelessWidget {
         ),
       ),
       onChanged: (value) {
-        if (value.isEmpty) return;
+        if (value.isEmpty) {
+          resetValues?.call(monitor);
+          return;
+        }
+
         onChanged(monitor, double.parse(value));
       },
     );
