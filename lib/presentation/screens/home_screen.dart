@@ -2,7 +2,6 @@ import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator_card_monitor.dart';
-import 'package:dolar_hoy/presentation/widgets/debug_view.dart';
 import 'package:dolar_hoy/presentation/widgets/list_details_rates_monitor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,8 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(width: 20),
                           Expanded(flex: 1, child: CalculatorCardMonitor()),
-                          const SizedBox(height: 20),
-                          const DebugView(),
                         ],
                       )
                     : Column(
@@ -80,8 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ListDetailsRatesMonitor(monitors: state.monitors),
                           const SizedBox(height: 20),
                           CalculatorCardMonitor(),
-                          const SizedBox(height: 20),
-                          const DebugView(),
                         ],
                       ),
               ),

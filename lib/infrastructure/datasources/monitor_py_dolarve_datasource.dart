@@ -3,8 +3,6 @@ import 'package:dolar_hoy/domain/datasources/monitor_datasource.dart';
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/infrastructure/mappers/monitor_mapper.dart';
 import 'package:dolar_hoy/infrastructure/models/monitor_model.dart';
-import 'package:flutter/material.dart';
-import 'package:dolar_hoy/domain/debug/stacktrace.dart';
 
 class MonitorPyDolarVeDatasource extends MonitorDatasource {
   final String connection = 'py-dollar';
@@ -26,13 +24,13 @@ class MonitorPyDolarVeDatasource extends MonitorDatasource {
       );
 
       if (response.statusCode != 200) {
-        'Error en la respuesta HTTP: ${response.statusCode}'.log();
-        return [];
+        throw Exception(
+          'Error de API en datos, statusCode ${response.statusCode}',
+        );
       }
 
       if (response.data == null) {
-        'La respuesta no contiene datos'.log();
-        return [];
+        throw Exception('Error al obtener los datos, datos vacíos');
       }
 
       final monitors = MonitorMapper.fromModelToEntity(
@@ -40,15 +38,9 @@ class MonitorPyDolarVeDatasource extends MonitorDatasource {
         currency,
       );
 
-      'Monitors obtenidos correctamente ${monitors.length} monitores'.log();
-
       return monitors;
-    } catch (e, stackTrace) {
-      'Error en MonitorPyDolarVeDatasource.getAll:'.log();
-      'Tipo de error: ${e.runtimeType}'.log();
-      'Mensaje: $e'.log();
-      'Stack trace: $stackTrace'.log();
-      return [];
+    } catch (e) {
+      throw Exception('DATOS FALLIDOS, $e');
     }
   }
 }

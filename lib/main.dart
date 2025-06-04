@@ -16,7 +16,11 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => MonitorBloc(repository: MonitorRepositoryImpl(MonitorPyDolarVeDatasource()))),
+        BlocProvider(
+          create: (context) => MonitorBloc(
+            repository: MonitorRepositoryImpl(MonitorPyDolarVeDatasource()),
+          ),
+        ),
         BlocProvider(create: (context) => SettingsCubit()),
         BlocProvider(
           create: (context) {
