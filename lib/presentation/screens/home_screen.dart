@@ -22,9 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    final pageSelected = context.read<PageCubit>().state.page;
+    final pageSelected = context.read<PageCubit>().state;
 
-    context.read<MonitorBloc>().add(MonitorGetData(currency: 'dollar', page: pageSelected.value));
+    context.read<MonitorBloc>().add(
+      MonitorGetData(currency: pageSelected.currency, page: pageSelected.page.value),
+    );
   }
 
   @override

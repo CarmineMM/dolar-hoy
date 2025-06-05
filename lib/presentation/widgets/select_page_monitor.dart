@@ -1,3 +1,4 @@
+import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
 import 'package:dolar_hoy/presentation/widgets/share/network_image_with_fallback.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,9 @@ class SelectPageMonitor extends StatelessWidget {
                   groupValue: pageState.page,
                   onChanged: (value) {
                     context.read<PageCubit>().setPage(value!);
+                    context.read<MonitorBloc>().add(
+                      MonitorGetData(currency: pageState.currency, page: page.value),
+                    );
                     Navigator.pop(context);
                   },
                   title: Text(page.description),

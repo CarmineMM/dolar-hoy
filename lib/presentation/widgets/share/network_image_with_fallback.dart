@@ -47,9 +47,7 @@ class NetworkImageWithFallback extends StatelessWidget {
           return _buildLoadingWidget();
         },
       );
-    } catch (e, stackTrace) {
-      debugPrint('Excepción al cargar la imagen: $e');
-      debugPrint(stackTrace.toString());
+    } catch (e, _) {
       return _buildErrorWidget('Error');
     }
   }
