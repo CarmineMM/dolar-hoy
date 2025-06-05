@@ -2,6 +2,7 @@ import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/widgets/form/custom_dropdown_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,28 +13,18 @@ class SelectMonitorDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final monitor = context.watch<SettingsCubit>().state.monitor;
     final monitorState = context.read<MonitorBloc>().state as MonitorLoaded;
+    final convertCubit = context.read<ConvertCubit>();
 
-    final colors = Theme.of(context).colorScheme;
-
-    final border = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: colors.primary),
-    );
-
-    return DropdownButtonFormField<Monitor>(
-      isExpanded: true,
+    return CustomDropdownField<Monitor>(
       value: monitor,
-      onChanged: (value) {
-        context.read<SettingsCubit>().changeMonitor(value!);
-        context.read<ConvertCubit>().toLocalCurrency(
-          value,
-          context.read<ConvertCubit>().state.baseAmount,
-        );
-      },
-      decoration: InputDecoration(labelText: 'Monitor de tasas', isDense: true, border: border),
+      label: 'Monitor de tasas',
       items: monitorState.monitors
           .map((monitor) => DropdownMenuItem(value: monitor, child: Text(monitor.title)))
           .toList(),
+      onChanged: (value) {
+        context.read<SettingsCubit>().changeMonitor(value!);
+        convertCubit.toLocalCurrency(value, convertCubit.state.baseAmount);
+      },
     );
   }
 }

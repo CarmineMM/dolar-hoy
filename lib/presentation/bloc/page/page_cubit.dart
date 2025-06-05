@@ -43,4 +43,6 @@ class PageCubit extends Cubit<PageState> {
   PageCubit() : super(PageState());
 
   void setPage(PagesConvertion page) => emit(state.copyWith(page: page));
+
+  void changeCurrency(CurrencyApi currency) => emit(state.copyWith(currency: currency));
 }
