@@ -7,10 +7,12 @@ class CalculatorCardMonitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return const Card(
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(children: [SelectMonitorDropdown(), const SizedBox(height: 20), CalculatorConvert()]),
+        padding: EdgeInsets.all(18.0),
+        child: Column(
+          children: [SelectMonitorDropdown(), SizedBox(height: 20), CalculatorConvert()],
+        ),
       ),
     );
   }

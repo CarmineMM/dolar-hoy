@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dolar_hoy/domain/entities/currency.dart';
 import 'package:equatable/equatable.dart';
 
 part 'page_state.dart';

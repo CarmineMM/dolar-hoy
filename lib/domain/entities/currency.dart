@@ -41,6 +41,43 @@ class Currency {
         thousandsSeparator: $thousandsSeparator,
         flag: $flag,
     ''';
+
+  static Currency dolar() => Currency(
+    name: 'Dolar',
+    pluralName: 'Dolares',
+    shortName: 'Dolar',
+    symbol: '\$',
+    symbolPosition: SymbolPosition.beforeWithSpace,
+    isoCode: 'USD',
+    isoNumeric: '840',
+    decimalDigits: 2,
+    decimalSeparator: '.',
+    thousandsSeparator: ',',
+    flag: 'https://flagcdn.com/us.svg',
+  );
+
+  static Currency bolivares() => Currency(
+    name: 'Bolivar',
+    pluralName: 'Bolivares',
+    shortName: 'Bs',
+    symbol: 'Bs',
+    symbolPosition: SymbolPosition.after,
+    isoCode: 'VEF',
+    isoNumeric: '937',
+    decimalDigits: 2,
+    decimalSeparator: '.',
+    thousandsSeparator: ',',
+    flag: 'https://flagcdn.com/ve.svg',
+  );
+}
+
+enum CurrencyApi {
+  dolar('Dolar', 'dollar');
+
+  final String title;
+  final String apiKey;
+
+  const CurrencyApi(this.title, this.apiKey);
 }
 
 enum SymbolPosition { before, after, beforeWithSpace, afterWithSpace }

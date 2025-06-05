@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final pageSelected = context.read<PageCubit>().state;
 
     context.read<MonitorBloc>().add(
-      MonitorGetData(currency: pageSelected.currency, page: pageSelected.page.value),
+      MonitorGetData(currency: pageSelected.currency.apiKey, page: pageSelected.page.value),
     );
   }
 
@@ -82,10 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           )
-                        // Pantalla pequeña (Dispositivos mobiles)
+                        // Pantalla pequeña (Dispositivos)
                         : Column(
                             children: [
-                              CalculatorCardMonitor(),
+                              const CalculatorCardMonitor(),
                               const SizedBox(height: 20),
                               ListDetailsRatesMonitor(monitors: state.monitors),
                             ],

@@ -54,7 +54,7 @@ class SelectPageMonitor extends StatelessWidget {
                   onChanged: (value) {
                     context.read<PageCubit>().setPage(value!);
                     context.read<MonitorBloc>().add(
-                      MonitorGetData(currency: pageState.currency, page: value.value),
+                      MonitorGetData(currency: pageState.currency.apiKey, page: value.value),
                     );
                     Navigator.pop(context);
                   },
