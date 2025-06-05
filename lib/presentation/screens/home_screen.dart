@@ -52,7 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           // Error en la carga de monitores
           if (state is MonitorError) {
-            return Center(child: Text(state.message));
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(state.message),
+              ),
+            );
           }
 
           // Listado de monitores
