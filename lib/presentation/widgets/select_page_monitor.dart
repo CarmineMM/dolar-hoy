@@ -58,7 +58,13 @@ class SelectPageMonitor extends StatelessWidget {
                     );
                     Navigator.pop(context);
                   },
-                  title: Text(page.description),
+                  title: Row(
+                    children: [
+                      // NetworkImageWithFallback(page.imageUrl, width: 20, height: 20),
+                      // const SizedBox(width: 10),
+                      Text(page.description),
+                    ],
+                  ),
                 );
               }),
             ],
