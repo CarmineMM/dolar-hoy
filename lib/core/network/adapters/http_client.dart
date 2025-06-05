@@ -7,10 +7,11 @@ class HttpClient {
   /// Lista de conexiones a diversos backends
   final Map<String, HttpConnector> connections = {
     'py-dollar': HttpConnector(
-      url: 'https://pydolarve.org/api/v2/',
+      url: 'https://dolar.cordeliasw.com',
       header: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     ),
   };

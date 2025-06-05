@@ -3,39 +3,44 @@ import 'package:dolar_hoy/domain/datasources/monitor_datasource.dart';
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/infrastructure/mappers/monitor_mapper.dart';
 import 'package:dolar_hoy/infrastructure/models/monitor_model.dart';
-import 'package:flutter/material.dart';
 
 class MonitorPyDolarVeDatasource extends MonitorDatasource {
   final String connection = 'py-dollar';
 
   @override
-  Future<List<Monitor>> getAll(String currency, {String page = 'criptodolar'}) async {
+  Future<List<Monitor>> getAll(
+    String currency, {
+    String page = 'criptodolar',
+  }) async {
     try {
       final response = await HttpImplementer.get(
         connection,
         '/$currency',
-        queryParameters: {'page': page, 'format_date': 'iso', 'rounded_price': 'false'},
+        queryParameters: {
+          'page': page,
+          'format_date': 'iso',
+          'rounded_price': 'false',
+        },
       );
 
       if (response.statusCode != 200) {
-        debugPrint('Error en la respuesta HTTP: ${response.statusCode}');
-        debugPrint('Datos de respuesta: ${response.data}');
-        return [];
+        throw Exception(
+          'Error de API en datos, statusCode ${response.statusCode}',
+        );
       }
 
       if (response.data == null) {
-        debugPrint('La respuesta no contiene datos');
-        return [];
+        throw Exception('Error al obtener los datos, datos vacíos');
       }
 
-      final monitors = MonitorMapper.fromModelToEntity(MonitorModel.fromJson(response.data), currency);
+      final monitors = MonitorMapper.fromModelToEntity(
+        MonitorModel.fromJson(response.data),
+        currency,
+      );
+
       return monitors;
-    } catch (e, stackTrace) {
-      debugPrint('Error en MonitorPyDolarVeDatasource.getAll:');
-      debugPrint('Tipo de error: ${e.runtimeType}');
-      debugPrint('Mensaje: $e');
-      debugPrint('Stack trace: $stackTrace');
-      return [];
+    } catch (e) {
+      throw Exception('DATOS FALLIDOS, $e');
     }
   }
 }
