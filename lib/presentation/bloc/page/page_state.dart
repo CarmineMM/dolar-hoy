@@ -1,14 +1,14 @@
 part of 'page_cubit.dart';
 
 class PageState extends Equatable {
-  final String pageName;
+  final PagesConvertion page;
 
-  const PageState({this.pageName = 'criptodolar'});
+  const PageState({this.page = PagesConvertion.criptodolar});
 
   @override
-  List<Object> get props => [pageName];
+  List<Object> get props => [page];
 
-  PageState copyWith({String? pageName}) {
-    return PageState(pageName: pageName ?? this.pageName);
+  PageState copyWith({PagesConvertion? page}) {
+    return PageState(page: page ?? this.page);
   }
 }

@@ -35,7 +35,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       } else if (e is NoSuchMethodError) {
         errorMessage = 'Error al procesar la respuesta del servidor';
       } else if (e is Exception) {
-        errorMessage = 'Error al cargar los datos ${e.toString()}';
+        errorMessage = e.toString();
       }
 
       emit(MonitorError(message: errorMessage));

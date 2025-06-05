@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 part 'page_state.dart';
 
-enum Pages {
+enum PagesConvertion {
   criptodolar(
     'criptodolar',
     'CriptoDolar',
@@ -35,11 +35,11 @@ enum Pages {
   final String description;
   final String imageUrl;
 
-  const Pages(this.value, this.description, this.imageUrl);
+  const PagesConvertion(this.value, this.description, this.imageUrl);
 }
 
 class PageCubit extends Cubit<PageState> {
   PageCubit() : super(PageState());
 
-  void setPage(String page) => emit(state.copyWith(pageName: page));
+  void setPage(PagesConvertion page) => emit(state.copyWith(page: page));
 }
