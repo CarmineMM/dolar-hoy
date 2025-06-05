@@ -5,6 +5,7 @@ import 'package:dolar_hoy/infrastructure/datasources/monitor_py_dolarve_datasour
 import 'package:dolar_hoy/infrastructure/repositories/monitor_repository_impl.dart';
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
+import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,16 +20,14 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => PageCubit()),
         BlocProvider(
-          create: (context) => MonitorBloc(
-            repository: MonitorRepositoryImpl(MonitorPyDolarVeDatasource()),
-          ),
+          create: (context) =>
+              MonitorBloc(repository: MonitorRepositoryImpl(MonitorPyDolarVeDatasource())),
         ),
         BlocProvider(create: (context) => SettingsCubit()),
         BlocProvider(
-          create: (context) {
-            return ConvertCubit(settingsCubit: context.read<SettingsCubit>());
-          },
+          create: (context) => ConvertCubit(settingsCubit: context.read<SettingsCubit>()),
         ),
       ],
       child: const MainApp(),
