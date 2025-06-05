@@ -8,10 +8,18 @@ class SelectPageMonitor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageState = context.watch<PageCubit>().state;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return TextButton(
       onPressed: () => _showDialog(context, pageState),
-      child: Text(pageState.page.value),
+      child: Row(
+        children: [
+          Image.network(pageState.page.imageUrl, width: 20, height: 20),
+          const SizedBox(width: 10),
+          Text(pageState.page.description, style: TextStyle(color: colorScheme.onPrimary)),
+          const Icon(Icons.arrow_drop_down),
+        ],
+      ),
     );
   }
 
@@ -39,7 +47,7 @@ class SelectPageMonitor extends StatelessWidget {
               const SizedBox(height: 20),
               OutlinedButton.icon(
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Theme.of(context).colorScheme.error,
+                  foregroundColor: Theme.of(context).colorScheme.secondary,
                   // minimumSize: const Size(double.infinity, 40),
                 ),
                 onPressed: () => Navigator.pop(context),
