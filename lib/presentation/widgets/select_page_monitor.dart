@@ -1,4 +1,5 @@
 import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
+import 'package:dolar_hoy/presentation/widgets/share/network_image_with_fallback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,7 @@ class SelectPageMonitor extends StatelessWidget {
       onPressed: () => _showDialog(context, pageState),
       child: Row(
         children: [
-          Image.network(pageState.page.imageUrl, width: 20, height: 20),
+          NetworkImageWithFallback(pageState.page.imageUrl, width: 20, height: 20),
           const SizedBox(width: 10),
           Text(pageState.page.description, style: TextStyle(color: colorScheme.onPrimary)),
           const Icon(Icons.arrow_drop_down),
