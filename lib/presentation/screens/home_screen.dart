@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(title: Text(Environment.appName)),
+      appBar: AppBar(title: Text(Environment.appName), actions: [const Text('Acción')]),
       body: BlocConsumer<MonitorBloc, MonitorState>(
         listener: (context, state) {
           if (state is MonitorLoaded) {
