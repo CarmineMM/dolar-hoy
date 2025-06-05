@@ -9,8 +9,9 @@ sealed class MonitorEvent extends Equatable {
 
 class MonitorGetData extends MonitorEvent {
   final String currency;
+  final String page;
 
-  const MonitorGetData({required this.currency});
+  const MonitorGetData({required this.currency, this.page = 'criptodolar'});
 
   @override
   List<Object> get props => [currency];

@@ -54,19 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is MonitorLoaded) {
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15,
-                  horizontal: 15,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                 child: screenSize.width > 768
                     ? Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             flex: 2,
-                            child: ListDetailsRatesMonitor(
-                              monitors: state.monitors,
-                            ),
+                            child: ListDetailsRatesMonitor(monitors: state.monitors),
                           ),
                           const SizedBox(width: 20),
                           Expanded(flex: 1, child: CalculatorCardMonitor()),
@@ -83,9 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
 
-          return const Center(
-            child: Text('No hay data disponible para mostrar'),
-          );
+          return const Center(child: Text('No hay data disponible para mostrar'));
         },
       ),
     );

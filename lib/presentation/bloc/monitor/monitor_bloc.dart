@@ -14,20 +14,13 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   }
 
   // Obtener la data
-  Future<void> _onMonitorGetData(
-    MonitorGetData event,
-    Emitter<MonitorState> emit,
-  ) async {
+  Future<void> _onMonitorGetData(MonitorGetData event, Emitter<MonitorState> emit) async {
     emit(MonitorLoading());
     try {
-      final monitors = await repository.getAll(event.currency);
+      final monitors = await repository.getAll(event.currency, page: event.page);
 
       if (monitors.isEmpty) {
-        emit(
-          const MonitorError(
-            message: 'No se encontraron monitores disponibles',
-          ),
-        );
+        emit(const MonitorError(message: 'No se encontraron monitores disponibles'));
         return;
       }
 
