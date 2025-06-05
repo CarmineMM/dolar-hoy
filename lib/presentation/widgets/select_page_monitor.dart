@@ -26,11 +26,24 @@ class SelectPageMonitor extends StatelessWidget {
   }
 
   Future<void> _showDialog(BuildContext context, PageState pageState) async {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('Selecciona una página'),
+          actions: [
+            OutlinedButton.icon(
+              style: OutlinedButton.styleFrom(
+                foregroundColor: colorScheme.secondary,
+                // minimumSize: const Size(double.infinity, 40),
+              ),
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(Icons.close, color: colorScheme.onPrimary),
+              label: const Text('Cancelar'),
+            ),
+          ],
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -48,18 +61,6 @@ class SelectPageMonitor extends StatelessWidget {
                   title: Text(page.description),
                 );
               }),
-
-              const SizedBox(height: 20),
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Theme.of(context).colorScheme.secondary,
-                  // minimumSize: const Size(double.infinity, 40),
-                ),
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.close),
-                label: const Text('Cancelar'),
-              ),
-              const SizedBox(height: 5),
             ],
           ),
         );

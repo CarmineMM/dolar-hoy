@@ -6,7 +6,9 @@ class MonitorModel {
 
   factory MonitorModel.fromJson(Map<String, dynamic> json) => MonitorModel(
     datetime: Datetime.fromJson(json["datetime"]),
-    monitors: Map.from(json["monitors"]).map((k, v) => MapEntry<String, MonitorDatum>(k, MonitorDatum.fromJson(v))),
+    monitors: Map.from(
+      json["monitors"],
+    ).map((k, v) => MapEntry<String, MonitorDatum>(k, MonitorDatum.fromJson(v))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -21,7 +23,8 @@ class Datetime {
 
   Datetime({required this.date, required this.time});
 
-  factory Datetime.fromJson(Map<String, dynamic> json) => Datetime(date: json["date"], time: json["time"]);
+  factory Datetime.fromJson(Map<String, dynamic> json) =>
+      Datetime(date: json["date"], time: json["time"]);
 
   Map<String, dynamic> toJson() => {"date": date, "time": time};
 }
@@ -34,7 +37,7 @@ class MonitorDatum {
   final double percent;
   final double price;
   final double priceOld;
-  final Symbol symbol;
+  final String symbol;
   final String title;
 
   MonitorDatum({
@@ -57,7 +60,7 @@ class MonitorDatum {
     percent: json["percent"]?.toDouble(),
     price: json["price"]?.toDouble(),
     priceOld: json["price_old"]?.toDouble(),
-    symbol: symbolValues.map[json["symbol"]]!,
+    symbol: json["symbol"],
     title: json["title"],
   );
 
@@ -69,20 +72,15 @@ class MonitorDatum {
     "percent": percent,
     "price": price,
     "price_old": priceOld,
-    "symbol": symbolValues.reverse[symbol],
+    "symbol": symbol,
     "title": title,
   };
 }
 
 // ignore: constant_identifier_names
-enum Color { GREEN, NEUTRAL }
+enum Color { GREEN, NEUTRAL, RED }
 
-final colorValues = EnumValues({"green": Color.GREEN, "neutral": Color.NEUTRAL});
-
-// ignore: constant_identifier_names
-enum Symbol { EMPTY, SYMBOL }
-
-final symbolValues = EnumValues({"▲": Symbol.EMPTY, "": Symbol.SYMBOL});
+final colorValues = EnumValues({"green": Color.GREEN, "neutral": Color.NEUTRAL, "red": Color.RED});
 
 class EnumValues<T> {
   Map<String, T> map;

@@ -6,21 +6,27 @@ class ListDetailsRatesMonitor extends StatelessWidget {
 
   const ListDetailsRatesMonitor({super.key, required this.monitors});
 
+  double _calcHeightScreen(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return monitors.length >= 5 ? (screenSize.width > 768 ? 500 : 300) : monitors.length * 75;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
+    final textTheme = Theme.of(context).textTheme;
 
     return Card(
       child: SizedBox(
-        height: screenSize.width > 768 ? 500 : 300,
+        height: _calcHeightScreen(context),
         child: ListView.builder(
+          physics: monitors.length <= 3 ? const NeverScrollableScrollPhysics() : null,
           itemCount: monitors.length,
           itemBuilder: (context, index) {
             final monitor = monitors[index];
 
             return ListTile(
               title: Text(monitor.title),
-              trailing: Text('Bs. ${monitor.price}'),
+              trailing: Text('Bs. ${monitor.price}', style: textTheme.bodyMedium),
               subtitle: monitor.lastUpdate != null ? Text(monitor.lastUpdateString) : null,
             );
           },

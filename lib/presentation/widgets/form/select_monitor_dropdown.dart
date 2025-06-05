@@ -25,7 +25,10 @@ class SelectMonitorDropdown extends StatelessWidget {
       value: monitor,
       onChanged: (value) {
         context.read<SettingsCubit>().changeMonitor(value!);
-        context.read<ConvertCubit>().toLocalCurrency(value, 31);
+        context.read<ConvertCubit>().toLocalCurrency(
+          value,
+          context.read<ConvertCubit>().state.baseAmount,
+        );
       },
       decoration: InputDecoration(labelText: 'Monitor de tasas', isDense: true, border: border),
       items: monitorState.monitors

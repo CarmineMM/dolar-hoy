@@ -24,7 +24,10 @@ class MonitorPyDolarVeDatasource extends MonitorDatasource {
         throw Exception('Error al obtener los datos, datos vacíos');
       }
 
-      final monitors = MonitorMapper.fromModelToEntity(MonitorModel.fromJson(response.data), currency);
+      final monitors = MonitorMapper.fromModelToEntity(
+        MonitorModel.fromJson(response.data),
+        currency,
+      );
 
       return monitors;
     } catch (e) {
