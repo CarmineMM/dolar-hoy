@@ -14,6 +14,7 @@ dependencies:
         sdk: flutter
     flutter_bloc: ^9.1.1
     flutter_dotenv: ^5.2.1
+    flutter_launcher_icons: ^0.14.3
     go_router: ^15.1.2
     intl: ^0.20.2
 
@@ -26,3 +27,11 @@ flutter:
     uses-material-design: true
     assets:
         - .env
+
+flutter_icons:
+    android: 'launcher_icon'
+    ios: true
+    image_path: 'assets/icon/launcher_icon.png'
+    web:
+        generate: true
+        image_path: 'assets/icon/launcher_icon.png'
