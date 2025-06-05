@@ -11,7 +11,9 @@ class ListDetailsRatesMonitor extends StatelessWidget {
 
   double _calcHeightScreen(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return monitors.length >= 5 ? (screenSize.width > 768 ? 500 : 300) : monitors.length * 75;
+    return monitors.length >= 5
+        ? (screenSize.width > 768 ? screenSize.height * 0.8 : 290)
+        : monitors.length * 75;
   }
 
   @override

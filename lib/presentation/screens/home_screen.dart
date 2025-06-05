@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is MonitorLoaded) {
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 child: Column(
                   children: [
                     const BrandingApp(),
