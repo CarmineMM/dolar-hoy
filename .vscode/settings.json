@@ -5,7 +5,8 @@
 		"Datasource",
 		"dotenv",
 		"implementador",
-		"implementadores"
+		"implementadores",
+		"italcambio"
 	],
     "gitflow.disableOnRepo": true,
     "[dart]": {

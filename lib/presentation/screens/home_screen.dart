@@ -3,6 +3,7 @@ import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator_card_monitor.dart';
 import 'package:dolar_hoy/presentation/widgets/list_details_rates_monitor.dart';
+import 'package:dolar_hoy/presentation/widgets/select_page_monitor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(title: Text(Environment.appName), actions: [const Text('Acción')]),
+      appBar: AppBar(title: Text(Environment.appName), actions: [const SelectPageMonitor()]),
       body: BlocConsumer<MonitorBloc, MonitorState>(
         listener: (context, state) {
           if (state is MonitorLoaded) {
