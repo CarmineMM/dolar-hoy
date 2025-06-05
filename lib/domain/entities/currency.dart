@@ -72,7 +72,8 @@ class Currency {
 }
 
 enum CurrencyApi {
-  dolar('Dolar', 'dollar');
+  dolar('Dolar', 'dollar'),
+  euro('Euro', 'euro');
 
   final String title;
   final String apiKey;

@@ -1,4 +1,3 @@
-import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:flutter/material.dart';
 
 class BrandingApp extends StatelessWidget {
@@ -6,15 +5,15 @@ class BrandingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
 
     return SizedBox(
-      height: 150,
+      height: 120,
       child: Center(
         child: Column(
           children: [
             Image.asset('assets/icon/launcher_icon.png', height: 120),
-            Text(Environment.appName, style: textTheme.titleMedium),
+            // Text(Environment.appName, style: textTheme.titleMedium),
           ],
         ),
       ),

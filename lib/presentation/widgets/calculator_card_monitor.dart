@@ -11,7 +11,18 @@ class CalculatorCardMonitor extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(18.0),
         child: Column(
-          children: [SelectMonitorDropdown(), SizedBox(height: 20), CalculatorConvert()],
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(flex: 1, child: Text('hola')),
+                Expanded(flex: 1, child: SelectMonitorDropdown()),
+              ],
+            ),
+            SizedBox(height: 20),
+            CalculatorConvert(),
+          ],
         ),
       ),
     );
