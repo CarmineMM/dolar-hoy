@@ -32,7 +32,10 @@ class SelectPageMonitor extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Selecciona una página'),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: const Text('Selecciona una página'),
+          ),
           actions: [
             OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
@@ -40,8 +43,8 @@ class SelectPageMonitor extends StatelessWidget {
                 // minimumSize: const Size(double.infinity, 40),
               ),
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.close, color: colorScheme.onPrimary),
-              label: const Text('Cancelar'),
+              icon: const Icon(Icons.close),
+              label: const Text('Cerrar'),
             ),
           ],
           content: Column(

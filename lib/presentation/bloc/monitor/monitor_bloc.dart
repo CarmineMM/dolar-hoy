@@ -6,6 +6,8 @@ import 'package:equatable/equatable.dart';
 part 'monitor_event.dart';
 part 'monitor_state.dart';
 
+/// El bloc de monitor contiene la data entera del monitor cargado.
+/// Estos monitores vienen la API por ende tienen estados avanzados (Como carga, error, y data).
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   final MonitorRepository repository;
 

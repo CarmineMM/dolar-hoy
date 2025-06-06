@@ -6,7 +6,7 @@ import 'package:dolar_hoy/infrastructure/repositories/monitor_repository_impl.da
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
-import 'package:dolar_hoy/presentation/bloc/settings/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/settings_old/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -43,7 +43,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       title: Environment.appName,
       debugShowCheckedModeBanner: Environment.debug,
-      theme: AppTheme().getTheme(),
+      theme: AppTheme().getTheme(isDarkMode: false),
       routerConfig: appRouter,
     );
   }

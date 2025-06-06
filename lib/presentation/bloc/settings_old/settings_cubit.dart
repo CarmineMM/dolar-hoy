@@ -4,6 +4,10 @@ import 'package:equatable/equatable.dart';
 
 part 'settings_state.dart';
 
+/// Este setting solo contiene el monitor seleccionado
+@Deprecated(
+  'Ahora se centrara, el monitor, la moneda y la pagina seleccionada dentro de un Bloc, SettingBloc',
+)
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit() : super(SettingsState(monitor: Monitor.empty()));
 
@@ -12,7 +16,12 @@ class SettingsCubit extends Cubit<SettingsState> {
   /// selecciones previas del usuario actual.
   void selectMonitorFromMonitorsList(List<Monitor> monitors) {
     emit(
-      state.copyWith(monitor: monitors.firstWhere((monitor) => monitor.name == 'bcv', orElse: () => monitors.first)),
+      state.copyWith(
+        monitor: monitors.firstWhere(
+          (monitor) => monitor.name == 'bcv',
+          orElse: () => monitors.first,
+        ),
+      ),
     );
   }
 
