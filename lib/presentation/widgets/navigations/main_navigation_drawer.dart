@@ -1,5 +1,4 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
-import 'package:dolar_hoy/core/constants/theme_colors.dart';
 import 'package:dolar_hoy/core/menu/menu_items.dart';
 import 'package:dolar_hoy/presentation/widgets/share/branding_app.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ class MainNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
 
     return NavigationDrawer(
       selectedIndex: -1,
