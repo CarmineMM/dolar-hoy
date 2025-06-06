@@ -1,12 +1,13 @@
+import 'package:dolar_hoy/core/constants/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
   ThemeData getTheme({isDarkMode = false}) => ThemeData(
-    primaryColor: Color.fromRGBO(36, 43, 52, 1),
-    secondaryHeaderColor: Color.fromRGBO(246, 134, 31, 1),
+    primaryColor: ThemeColors.primary,
+    secondaryHeaderColor: ThemeColors.secondary,
     brightness: isDarkMode ? Brightness.dark : Brightness.light,
     appBarTheme: AppBarTheme(
-      backgroundColor: Color.fromRGBO(36, 43, 52, 1),
+      backgroundColor: ThemeColors.primary,
       foregroundColor: Colors.grey[100],
     ),
   );
