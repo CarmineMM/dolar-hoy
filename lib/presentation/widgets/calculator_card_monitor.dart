@@ -1,5 +1,4 @@
 import 'package:dolar_hoy/presentation/widgets/calculator_convert.dart';
-import 'package:dolar_hoy/presentation/widgets/form/dropdown_select_currency.dart';
 import 'package:dolar_hoy/presentation/widgets/form/select_monitor_dropdown.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +16,8 @@ class CalculatorCardMonitor extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(flex: 1, child: DropdownSelectCurrency()),
-                SizedBox(width: 20),
+                // Expanded(flex: 1, child: DropdownSelectCurrency()),
+                // SizedBox(width: 20),
                 Expanded(flex: 1, child: SelectMonitorDropdown()),
               ],
             ),
