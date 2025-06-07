@@ -1,5 +1,6 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:dolar_hoy/presentation/layouts/main_layout.dart';
+import 'package:dolar_hoy/presentation/screens/about_screen.dart';
 import 'package:dolar_hoy/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +16,11 @@ final appRouter = GoRouter(
           path: HomeScreen.routePath,
           name: HomeScreen.routeName,
           builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
+        ),
+        GoRoute(
+          path: AboutScreen.routePath,
+          name: AboutScreen.routeName,
+          builder: (BuildContext context, GoRouterState state) => const AboutScreen(),
         ),
       ],
     ),
