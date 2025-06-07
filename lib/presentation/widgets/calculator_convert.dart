@@ -14,6 +14,8 @@ class CalculatorConvert extends StatefulWidget {
 class _CalculatorConvertState extends State<CalculatorConvert> {
   late TextEditingController _baseAmountController;
   late TextEditingController _localAmountController;
+  late FocusNode _baseFocusNode;
+  late FocusNode _localFocusNode;
 
   @override
   void initState() {
@@ -21,17 +23,21 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
 
     _baseAmountController = TextEditingController();
     _localAmountController = TextEditingController();
+    _baseFocusNode = FocusNode();
+    _localFocusNode = FocusNode();
 
-    // Valores por default
+    // Valores por default (establecerlos solo una vez al inicio)
     final convertState = context.read<ConvertCubit>().state;
-    _baseAmountController.text = convertState.baseAmount.toString();
-    _localAmountController.text = convertState.localAmount.toString();
+    _baseAmountController.text = convertState.baseAmount.toStringAsFixed(2);
+    _localAmountController.text = convertState.localAmount.toStringAsFixed(2);
   }
 
   @override
   void dispose() {
     _baseAmountController.dispose();
     _localAmountController.dispose();
+    _baseFocusNode.dispose();
+    _localFocusNode.dispose();
     super.dispose();
   }
 
@@ -44,14 +50,44 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
         final newBaseAmountText = convertState.baseAmount.toStringAsFixed(2);
         final newLocalAmountText = convertState.localAmount.toStringAsFixed(2);
 
-        if (_baseAmountController.text != newBaseAmountText &&
-            !_baseAmountController.selection.isValid) {
+        // Lógica para actualizar los controladores de forma reactiva
+        // Solo actualizamos el campo que NO tiene el foco
+        // y solo si el texto del controlador es diferente al nuevo valor del estado.
+
+        // Si el foco NO está en el campo base Y el texto actual es diferente al del estado
+        if (!_baseFocusNode.hasFocus && _baseAmountController.text != newBaseAmountText) {
+          final currentSelection = _baseAmountController.selection;
           _baseAmountController.text = newBaseAmountText;
+          // Intentar mantener la posición del cursor si es posible
+          try {
+            _baseAmountController.selection = currentSelection.copyWith(
+              baseOffset: currentSelection.baseOffset.clamp(0, newBaseAmountText.length),
+              extentOffset: currentSelection.extentOffset.clamp(0, newBaseAmountText.length),
+            );
+          } catch (e) {
+            // Fallback: mover el cursor al final si hay un error
+            _baseAmountController.selection = TextSelection.fromPosition(
+              TextPosition(offset: _baseAmountController.text.length),
+            );
+          }
         }
 
-        if (_localAmountController.text != newLocalAmountText &&
-            !_localAmountController.selection.isValid) {
+        // Si el foco NO está en el campo local Y el texto actual es diferente al del estado
+        if (!_localFocusNode.hasFocus && _localAmountController.text != newLocalAmountText) {
+          final currentSelection = _localAmountController.selection;
           _localAmountController.text = newLocalAmountText;
+          // Intentar mantener la posición del cursor si es posible
+          try {
+            _localAmountController.selection = currentSelection.copyWith(
+              baseOffset: currentSelection.baseOffset.clamp(0, newLocalAmountText.length),
+              extentOffset: currentSelection.extentOffset.clamp(0, newLocalAmountText.length),
+            );
+          } catch (e) {
+            // Fallback: mover el cursor al final si hay un error
+            _localAmountController.selection = TextSelection.fromPosition(
+              TextPosition(offset: _localAmountController.text.length),
+            );
+          }
         }
 
         return Column(
@@ -59,8 +95,13 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
             // Monto base (USD, EUR, etc..)
             ConvertTextFormField(
               controller: _baseAmountController,
+              focusNode: _baseFocusNode, // Asignar el FocusNode
               monitor: monitor,
-              onChanged: context.read<ConvertCubit>().toLocalCurrency,
+              onChanged: (monitor, amount) {
+                // Aquí, el onChanged es para actualizar el CUBIT.
+                // El control del TextEditingController se hace en el BlocBuilder.
+                context.read<ConvertCubit>().toLocalCurrency(monitor, amount);
+              },
               resetValues: context.read<ConvertCubit>().resetAmount,
             ),
 
@@ -69,9 +110,12 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
             // Monto local (VES)
             ConvertTextFormField(
               controller: _localAmountController,
+              focusNode: _localFocusNode, // Asignar el FocusNode
               monitor: monitor,
               symbol: convertState.localCurrency.symbol,
-              onChanged: context.read<ConvertCubit>().toBaseCurrency,
+              onChanged: (monitor, amount) {
+                context.read<ConvertCubit>().toBaseCurrency(monitor, amount);
+              },
               hintText: convertState.localCurrency.pluralName,
               resetValues: context.read<ConvertCubit>().resetAmount,
             ),
