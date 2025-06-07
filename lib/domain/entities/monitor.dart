@@ -2,7 +2,6 @@ import 'package:dolar_hoy/domain/entities/currency.dart';
 import 'package:intl/intl.dart';
 
 class Monitor {
-  final Currency currency;
   final String name;
   final String title;
   final String image;
@@ -11,6 +10,7 @@ class Monitor {
   final double price;
   final double? pricePrevious;
   final DateTime? lastUpdate;
+  final Currency currency;
 
   Monitor({
     required this.currency,

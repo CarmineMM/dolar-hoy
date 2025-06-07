@@ -40,6 +40,7 @@ class Currency {
         decimalSeparator: $decimalSeparator,
         thousandsSeparator: $thousandsSeparator,
         flag: $flag,
+        ==  ==
     ''';
 
   static Currency dolar() => Currency(
@@ -68,6 +69,20 @@ class Currency {
     decimalSeparator: '.',
     thousandsSeparator: ',',
     flag: 'https://flagcdn.com/ve.svg',
+  );
+
+  static Currency euro() => Currency(
+    name: 'Euro',
+    pluralName: 'Euros',
+    shortName: 'Euro',
+    symbol: '€',
+    symbolPosition: SymbolPosition.beforeWithSpace,
+    isoCode: 'EUR',
+    isoNumeric: '978',
+    decimalDigits: 2,
+    decimalSeparator: '.',
+    thousandsSeparator: ',',
+    flag: 'https://flagcdn.com/eu.svg',
   );
 }
 

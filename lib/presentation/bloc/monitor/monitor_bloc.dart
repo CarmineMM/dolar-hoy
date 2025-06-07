@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/domain/repositories/monitor_repository.dart';
+import 'package:dolar_hoy/domain/use_cases/adjust_currency_monitors_case.dart';
 import 'package:equatable/equatable.dart';
 
 part 'monitor_event.dart';
@@ -26,7 +27,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
         return;
       }
 
-      emit(MonitorLoaded(monitors: monitors));
+      emit(MonitorLoaded(monitors: AdjustCurrencyMonitorsCase.call(monitors)));
     } catch (e) {
       String errorMessage = 'Error al cargar los datos';
 
