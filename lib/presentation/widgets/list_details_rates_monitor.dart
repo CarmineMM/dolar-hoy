@@ -1,3 +1,4 @@
+import 'package:dolar_hoy/core/constants/breakpoints.dart';
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
 import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
@@ -11,8 +12,9 @@ class ListDetailsRatesMonitor extends StatelessWidget {
 
   double _calcHeightScreen(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+
     return monitors.length >= 5
-        ? (screenSize.width > 768 ? screenSize.height * 0.8 : 290)
+        ? (screenSize.width > Breakpoints.mobile ? screenSize.height * 0.7 : 290)
         : monitors.length * 75;
   }
 

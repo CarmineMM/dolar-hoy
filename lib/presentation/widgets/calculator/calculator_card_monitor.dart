@@ -1,4 +1,4 @@
-import 'package:dolar_hoy/presentation/widgets/calculator_convert.dart';
+import 'package:dolar_hoy/presentation/widgets/calculator/calculator_convert.dart';
 import 'package:dolar_hoy/presentation/widgets/form/select_monitor_dropdown.dart';
 import 'package:flutter/material.dart';
 

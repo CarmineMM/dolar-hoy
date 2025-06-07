@@ -1,6 +1,7 @@
+import 'package:dolar_hoy/core/constants/breakpoints.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
-import 'package:dolar_hoy/presentation/widgets/calculator_card_monitor.dart';
+import 'package:dolar_hoy/presentation/widgets/calculator/calculator_card_monitor.dart';
 import 'package:dolar_hoy/presentation/widgets/list_details_rates_monitor.dart';
 import 'package:dolar_hoy/presentation/widgets/share/branding_app.dart';
 import 'package:flutter/material.dart';
@@ -59,8 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               child: Column(
                 children: [
-                  const BrandingApp(),
-                  screenSize.width > 768
+                  screenSize.width > Breakpoints.mobile
                       // Pantalla grande
                       ? Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       // Pantalla pequeña (Dispositivos)
                       : Column(
                           children: [
+                            const BrandingApp(),
                             const CalculatorCardMonitor(),
                             const SizedBox(height: 20),
                             ListDetailsRatesMonitor(monitors: state.monitors),
