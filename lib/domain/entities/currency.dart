@@ -43,6 +43,7 @@ class Currency {
         ==  ==
     ''';
 
+  /// Dolar
   static Currency dolar() => Currency(
     name: 'Dolar',
     pluralName: 'Dolares',
@@ -57,6 +58,7 @@ class Currency {
     flag: 'https://flagcdn.com/us.svg',
   );
 
+  /// Bolivares
   static Currency bolivares() => Currency(
     name: 'Bolivar',
     pluralName: 'Bolivares',
@@ -71,6 +73,7 @@ class Currency {
     flag: 'https://flagcdn.com/ve.svg',
   );
 
+  /// Euro
   static Currency euro() => Currency(
     name: 'Euro',
     pluralName: 'Euros',
@@ -83,6 +86,36 @@ class Currency {
     decimalSeparator: '.',
     thousandsSeparator: ',',
     flag: 'https://flagcdn.com/eu.svg',
+  );
+
+  /// Roblo Ruso
+  static Currency rublo() => Currency(
+    name: 'Rublo',
+    pluralName: 'Rublos',
+    shortName: 'Rublo',
+    symbol: 'RUB',
+    symbolPosition: SymbolPosition.beforeWithSpace,
+    isoCode: 'RUB',
+    isoNumeric: '643',
+    decimalDigits: 2,
+    decimalSeparator: '.',
+    thousandsSeparator: ',',
+    flag: 'https://flagcdn.com/ru.svg',
+  );
+
+  /// Lira turca
+  static Currency lira() => Currency(
+    name: 'Lira',
+    pluralName: 'Liras',
+    shortName: 'Lira',
+    symbol: 'TL',
+    symbolPosition: SymbolPosition.beforeWithSpace,
+    isoCode: 'TRY',
+    isoNumeric: '949',
+    decimalDigits: 2,
+    decimalSeparator: '.',
+    thousandsSeparator: ',',
+    flag: 'https://flagcdn.com/tr.svg',
   );
 }
 

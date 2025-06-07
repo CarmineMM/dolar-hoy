@@ -9,6 +9,14 @@ class AdjustCurrencyMonitorsCase {
       return monitor.copyWith(currency: Currency.euro());
     }
 
+    if (monitor.name == 'rub') {
+      return monitor.copyWith(currency: Currency.rublo());
+    }
+
+    if (monitor.name == 'try') {
+      return monitor.copyWith(currency: Currency.lira());
+    }
+
     return monitor;
   }).toList();
 }
