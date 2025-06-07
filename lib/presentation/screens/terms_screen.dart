@@ -1,11 +1,11 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:flutter/material.dart';
 
-class AboutScreen extends StatelessWidget {
-  static const String routeName = 'about';
-  static const String routePath = '/about';
+class TermsScreen extends StatelessWidget {
+  static const String routeName = 'terms';
+  static const String routePath = '/terms';
 
-  const AboutScreen({super.key});
+  const TermsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

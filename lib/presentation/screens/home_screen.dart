@@ -22,10 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     final settingBloc = context.read<SettingBloc>().state;
+    final monitorBloc = context.read<MonitorBloc>().state;
 
-    context.read<MonitorBloc>().add(
-      MonitorGetData(currency: settingBloc.currency.apiKey, page: settingBloc.page.value),
-    );
+    if (monitorBloc is MonitorInitial) {
+      context.read<MonitorBloc>().add(
+        MonitorGetData(currency: settingBloc.currency.apiKey, page: settingBloc.page.value),
+      );
+    }
   }
 
   @override

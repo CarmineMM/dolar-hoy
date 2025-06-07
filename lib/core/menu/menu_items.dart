@@ -1,4 +1,5 @@
-import 'package:dolar_hoy/presentation/screens/about_screen.dart';
+import 'package:dolar_hoy/presentation/screens/details_monitors_screen.dart';
+import 'package:dolar_hoy/presentation/screens/terms_screen.dart';
 import 'package:dolar_hoy/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,11 @@ class MenuItem {
 }
 
 const appMenuItems = <MenuItem>[
-  MenuItem(title: 'Inicio', route: HomeScreen.routeName, icon: Icons.home),
-  MenuItem(title: 'Acerca de', route: AboutScreen.routeName, icon: Icons.info),
+  MenuItem(title: 'Inicio', route: HomeScreen.routeName, icon: Icons.home_outlined),
+  MenuItem(
+    title: 'Monitores',
+    route: DetailsMonitorsScreen.routeName,
+    icon: Icons.currency_exchange,
+  ),
+  MenuItem(title: 'Términos y Condiciones', route: TermsScreen.routeName, icon: Icons.info_outline),
 ];
