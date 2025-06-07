@@ -25,10 +25,7 @@ final class SelectDefaultMonitor extends SettingEvent {
   List<Object> get props => [monitors];
 
   Monitor get monitor {
-    return monitors.firstWhere(
-      (monitor) => monitor.name == PagesConvertion.bcv.value,
-      orElse: () => monitors.first,
-    );
+    return monitors.firstWhere((monitor) => monitor.name == 'eur', orElse: () => monitors.first);
   }
 }
 
@@ -39,4 +36,13 @@ final class SettingSetCurrency extends SettingEvent {
 
   @override
   List<Object> get props => [currency];
+}
+
+final class SettingSetPage extends SettingEvent {
+  final PagesConvertion page;
+
+  const SettingSetPage({required this.page});
+
+  @override
+  List<Object> get props => [page];
 }

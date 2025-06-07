@@ -10,6 +10,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
   SettingBloc() : super(SettingState()) {
     on<SelectDefaultMonitor>(_selectDefaultMonitor);
     on<SettingSetMonitor>(_settingSetMonitor);
+    on<SettingSetPage>(_settingSetPage);
   }
 
   /// Establece el monitor por default
@@ -19,5 +20,9 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
 
   void _settingSetMonitor(SettingSetMonitor event, Emitter<SettingState> emit) {
     emit(state.copyWith(monitor: event.monitor));
+  }
+
+  void _settingSetPage(SettingSetPage event, Emitter<SettingState> emit) {
+    emit(state.copyWith(page: event.page));
   }
 }

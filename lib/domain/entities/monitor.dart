@@ -57,7 +57,7 @@ class Monitor {
 
   static Monitor empty() => Monitor(
     currency: Currency.dolar(),
-    name: 'Empty',
+    name: 'empty',
     title: 'Dolar Hoy Venezuela',
     image: 'https://flagcdn.com/ve.svg',
     changeAmount: 0,

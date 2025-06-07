@@ -15,7 +15,9 @@ class SelectMonitorDropdown extends StatelessWidget {
     final monitorState = context.watch<MonitorBloc>().state as MonitorLoaded;
     final convertCubit = context.read<ConvertCubit>();
 
-    if (monitorState.monitors.isEmpty || monitorState.monitors.length < 2) {
+    if (monitorState.monitors.isEmpty ||
+        monitorState.monitors.length < 2 ||
+        monitor.name == Monitor.empty().name) {
       return const SizedBox.shrink();
     }
 

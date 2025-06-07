@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<MonitorBloc, MonitorState>(
       listener: (context, state) {
         if (state is MonitorLoaded) {
-          SelectDefaultMonitor(monitors: state.monitors);
+          context.read<SettingBloc>().add(SelectDefaultMonitor(monitors: state.monitors));
         }
       },
       builder: (context, state) {
