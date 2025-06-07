@@ -1,39 +1,24 @@
 part of 'setting_bloc.dart';
 
-sealed class SettingState extends Equatable {
-  const SettingState();
-
-  @override
-  List<Object> get props => [];
-}
-
-final class SettingInitial extends SettingState {
-  final Monitor monitor;
-  final PagesConvertion page;
-
-  SettingInitial()
-    : monitor = Monitor(
-        currency: Currency.dolar(),
-        name: 'Dolar',
-        title: 'Cargando...',
-        image: '',
-        changeAmount: 0,
-        changePercentage: 0,
-        price: 0,
-      ),
-      page = PagesConvertion.bcv;
-
-  @override
-  List<Object> get props => [monitor, page];
-}
-
-final class SettingLoaded extends SettingState {
+final class SettingState extends Equatable {
   final Monitor monitor;
   final PagesConvertion page;
   final CurrencyApi currency;
 
-  const SettingLoaded({required this.monitor, required this.page, required this.currency});
+  SettingState({
+    Monitor? monitor,
+    this.page = PagesConvertion.bcv,
+    this.currency = CurrencyApi.dolar,
+  }) : monitor = monitor ?? Monitor.empty();
 
   @override
   List<Object> get props => [monitor, page, currency];
+
+  SettingState copyWith({Monitor? monitor, PagesConvertion? page, CurrencyApi? currency}) {
+    return SettingState(
+      monitor: monitor ?? this.monitor,
+      page: page ?? this.page,
+      currency: currency ?? this.currency,
+    );
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
-import 'package:dolar_hoy/presentation/bloc/settings_old/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class ListDetailsRatesMonitor extends StatelessWidget {
 
             return GestureDetector(
               onTap: () {
-                context.read<SettingsCubit>().changeMonitor(monitor);
+                context.read<SettingBloc>().add(SettingSetMonitor(monitor: monitor));
                 convertCubic.toLocalCurrency(monitor, convertCubic.state.baseAmount);
               },
               child: ListTile(

@@ -1,6 +1,5 @@
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
-import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
-import 'package:dolar_hoy/presentation/bloc/settings_old/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator_card_monitor.dart';
 import 'package:dolar_hoy/presentation/widgets/list_details_rates_monitor.dart';
 import 'package:dolar_hoy/presentation/widgets/share/branding_app.dart';
@@ -21,10 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    final pageSelected = context.read<PageCubit>().state;
+    final settingBloc = context.read<SettingBloc>().state;
 
     context.read<MonitorBloc>().add(
-      MonitorGetData(currency: pageSelected.currency.apiKey, page: pageSelected.page.value),
+      MonitorGetData(currency: settingBloc.currency.apiKey, page: settingBloc.page.value),
     );
   }
 
@@ -35,11 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<MonitorBloc, MonitorState>(
       listener: (context, state) {
         if (state is MonitorLoaded) {
-          final readSetting = context.read<SettingsCubit>();
-
-          readSetting.selectMonitorFromMonitorsList(state.monitors);
-
-          // context.read<ConvertCubit>().toLocalCurrency(readSetting.state.monitor, 1);
+          SelectDefaultMonitor(monitors: state.monitors);
         }
       },
       builder: (context, state) {

@@ -7,7 +7,17 @@ part 'setting_event.dart';
 part 'setting_state.dart';
 
 class SettingBloc extends Bloc<SettingEvent, SettingState> {
-  SettingBloc() : super(SettingInitial()) {
-    on<SettingEvent>((event, emit) {});
+  SettingBloc() : super(SettingState()) {
+    on<SelectDefaultMonitor>(_selectDefaultMonitor);
+    on<SettingSetMonitor>(_settingSetMonitor);
+  }
+
+  /// Establece el monitor por default
+  void _selectDefaultMonitor(SelectDefaultMonitor event, Emitter<SettingState> emit) {
+    emit(state.copyWith(monitor: event.monitor));
+  }
+
+  void _settingSetMonitor(SettingSetMonitor event, Emitter<SettingState> emit) {
+    emit(state.copyWith(monitor: event.monitor));
   }
 }

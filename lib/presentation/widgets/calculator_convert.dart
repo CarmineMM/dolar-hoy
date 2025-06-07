@@ -1,5 +1,5 @@
 import 'package:dolar_hoy/presentation/bloc/convert/convert_cubit.dart';
-import 'package:dolar_hoy/presentation/bloc/settings_old/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:dolar_hoy/presentation/widgets/form/convert_text_form_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -37,18 +37,20 @@ class _CalculatorConvertState extends State<CalculatorConvert> {
 
   @override
   Widget build(BuildContext context) {
-    final monitor = context.watch<SettingsCubit>().state.monitor;
+    final monitor = context.watch<SettingBloc>().state.monitor;
 
     return BlocBuilder<ConvertCubit, ConvertState>(
       builder: (context, convertState) {
         final newBaseAmountText = convertState.baseAmount.toStringAsFixed(2);
         final newLocalAmountText = convertState.localAmount.toStringAsFixed(2);
 
-        if (_baseAmountController.text != newBaseAmountText && !_baseAmountController.selection.isValid) {
+        if (_baseAmountController.text != newBaseAmountText &&
+            !_baseAmountController.selection.isValid) {
           _baseAmountController.text = newBaseAmountText;
         }
 
-        if (_localAmountController.text != newLocalAmountText && !_localAmountController.selection.isValid) {
+        if (_localAmountController.text != newLocalAmountText &&
+            !_localAmountController.selection.isValid) {
           _localAmountController.text = newLocalAmountText;
         }
 

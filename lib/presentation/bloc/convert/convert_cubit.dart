@@ -13,7 +13,7 @@ class ConvertCubit extends Cubit<ConvertState> {
     : super(
         ConvertState(
           baseAmount: 1,
-          localAmount: _getInitialPrice(settingBloc.state),
+          localAmount: settingBloc.state.monitor.price,
           localCurrency: Currency.bolivares(),
         ),
       ) {
@@ -23,15 +23,6 @@ class ConvertCubit extends Cubit<ConvertState> {
       //   toLocalCurrency(state.monitor, state.monitor.price);
       // }
     });
-  }
-
-  static double _getInitialPrice(SettingState state) {
-    if (state is SettingInitial) {
-      return state.monitor.price;
-    } else if (state is SettingLoaded) {
-      return state.monitor.price;
-    }
-    return 0.0;
   }
 
   /// Convierte un monto de la moneda del monitor a la moneda local (ej: USD -> VES)

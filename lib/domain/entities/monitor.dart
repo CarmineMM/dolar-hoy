@@ -56,22 +56,10 @@ class Monitor {
   }
 
   static Monitor empty() => Monitor(
-    currency: Currency(
-      name: 'Dolar',
-      pluralName: 'Dolares',
-      shortName: 'Dolar',
-      symbol: '\$',
-      symbolPosition: SymbolPosition.beforeWithSpace,
-      isoCode: 'USD',
-      isoNumeric: '840',
-      decimalDigits: 2,
-      decimalSeparator: '.',
-      thousandsSeparator: ',',
-      flag: 'https://flagcdn.com/us.svg',
-    ),
+    currency: Currency.dolar(),
     name: 'Empty',
-    title: 'Empty',
-    image: 'https://flagcdn.com/us.svg',
+    title: 'Dolar Hoy Venezuela',
+    image: 'https://flagcdn.com/ve.svg',
     changeAmount: 0,
     changePercentage: 0,
     price: 0,

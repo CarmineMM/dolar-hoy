@@ -1,5 +1,6 @@
+import 'package:dolar_hoy/domain/entities/monitor.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
-import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:dolar_hoy/presentation/widgets/share/network_image_with_fallback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,23 +10,23 @@ class SelectPageMonitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageState = context.watch<PageCubit>().state;
+    final settingBloc = context.watch<SettingBloc>().state;
     final colorScheme = Theme.of(context).colorScheme;
 
     return TextButton(
-      onPressed: () => _showDialog(context, pageState),
+      onPressed: () => _showDialog(context, settingBloc),
       child: Row(
         children: [
-          NetworkImageWithFallback(pageState.page.imageUrl, width: 20, height: 20),
+          NetworkImageWithFallback(settingBloc.page.imageUrl, width: 20, height: 20),
           const SizedBox(width: 10),
-          Text(pageState.page.description, style: TextStyle(color: colorScheme.onPrimary)),
+          Text(settingBloc.page.description, style: TextStyle(color: colorScheme.onPrimary)),
           const Icon(Icons.arrow_drop_down),
         ],
       ),
     );
   }
 
-  Future<void> _showDialog(BuildContext context, PageState pageState) async {
+  Future<void> _showDialog(BuildContext context, SettingState settingBloc) async {
     final colorScheme = Theme.of(context).colorScheme;
 
     return showDialog(
@@ -53,11 +54,10 @@ class SelectPageMonitor extends StatelessWidget {
               ...PagesConvertion.values.map((page) {
                 return RadioListTile(
                   value: page,
-                  groupValue: pageState.page,
+                  groupValue: settingBloc.page,
                   onChanged: (value) {
-                    context.read<PageCubit>().setPage(value!);
                     context.read<MonitorBloc>().add(
-                      MonitorGetData(currency: pageState.currency.apiKey, page: value.value),
+                      MonitorGetData(currency: settingBloc.currency.apiKey, page: value!.value),
                     );
                     Navigator.pop(context);
                   },

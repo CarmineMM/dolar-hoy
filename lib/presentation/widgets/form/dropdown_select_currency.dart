@@ -1,5 +1,5 @@
 import 'package:dolar_hoy/domain/entities/currency.dart';
-import 'package:dolar_hoy/presentation/bloc/page/page_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:dolar_hoy/presentation/widgets/form/custom_dropdown_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,16 +9,18 @@ class DropdownSelectCurrency extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageCubit = context.read<PageCubit>();
+    final settingBloc = context.read<SettingBloc>();
 
     return CustomDropdownField<CurrencyApi>(
-      value: pageCubit.state.currency,
+      value: settingBloc.state.currency,
       label: 'Moneda',
       items: CurrencyApi.values
-          .map((e) => DropdownMenuItem(value: e, child: Text(e.title)))
+          .map((currency) => DropdownMenuItem(value: currency, child: Text(currency.title)))
           .toList(),
       onChanged: (value) {
-        pageCubit.changeCurrency(value!);
+        if (value != null) {
+          SettingSetCurrency(currency: value);
+        }
       },
     );
   }
