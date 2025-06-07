@@ -1,5 +1,4 @@
 import 'package:dolar_hoy/core/constants/breakpoints.dart';
-import 'package:dolar_hoy/presentation/widgets/navigations/landscape_navigation.dart';
 import 'package:dolar_hoy/presentation/widgets/navigations/main_navigation_drawer.dart';
 import 'package:dolar_hoy/presentation/widgets/navigations/select_page_monitor.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +16,10 @@ class MainLayout extends StatelessWidget {
       body: screenSize.width > Breakpoints.mobile
           ? Row(
               children: [
-                Expanded(flex: 1, child: MainNavigationDrawer()),
-                child != null ? Expanded(flex: 3, child: child!) : const SizedBox.shrink(),
+                const Expanded(flex: 1, child: MainNavigationDrawer()),
+                child != null
+                    ? Expanded(flex: 3, child: child!)
+                    : const Center(child: Text('No hay data disponible para mostrar')),
               ],
             )
           : child,

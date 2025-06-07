@@ -14,7 +14,7 @@ class ListDetailsRatesMonitor extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     return monitors.length >= 5
-        ? (screenSize.width > Breakpoints.mobile ? screenSize.height * 0.7 : 290)
+        ? (screenSize.width > Breakpoints.mobile ? screenSize.height * 0.75 : 290)
         : monitors.length * 75;
   }
 
@@ -32,8 +32,8 @@ class ListDetailsRatesMonitor extends StatelessWidget {
           itemBuilder: (context, index) {
             final monitor = monitors[index];
 
-            return GestureDetector(
-              onTap: () {
+            return TextButton(
+              onPressed: () {
                 context.read<SettingBloc>().add(SettingSetMonitor(monitor: monitor));
                 convertCubic.toLocalCurrency(monitor, convertCubic.state.baseAmount);
               },

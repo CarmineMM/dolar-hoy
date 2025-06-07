@@ -68,14 +68,21 @@ class NetworkImageWithFallback extends StatelessWidget {
       height: height ?? minHeight,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(Icons.broken_image_outlined, size: 40, color: Colors.grey),
-          const SizedBox(height: 8),
-          Text(
-            message,
-            style: const TextStyle(color: Colors.grey, fontSize: 12),
-            textAlign: TextAlign.center,
+          Icon(
+            Icons.broken_image_outlined,
+            size: (width ?? minWidth ?? 10) > 40 ? 40 : 12,
+            color: Colors.grey,
           ),
+          const SizedBox(height: 8),
+          (width ?? minWidth ?? 10) > 40
+              ? Text(
+                  message,
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                  textAlign: TextAlign.center,
+                )
+              : const SizedBox(),
         ],
       ),
     );
