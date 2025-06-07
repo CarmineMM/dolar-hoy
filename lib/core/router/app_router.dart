@@ -3,6 +3,7 @@ import 'package:dolar_hoy/presentation/layouts/main_layout.dart';
 import 'package:dolar_hoy/presentation/screens/details_monitors_screen.dart';
 import 'package:dolar_hoy/presentation/screens/terms_screen.dart';
 import 'package:dolar_hoy/presentation/screens/home_screen.dart';
+import 'package:dolar_hoy/presentation/screens/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,6 +23,11 @@ final appRouter = GoRouter(
           path: DetailsMonitorsScreen.routePath,
           name: DetailsMonitorsScreen.routeName,
           builder: (BuildContext context, GoRouterState state) => const DetailsMonitorsScreen(),
+        ),
+        GoRoute(
+          path: TutorialScreen.routePath,
+          name: TutorialScreen.routeName,
+          builder: (BuildContext context, GoRouterState state) => const TutorialScreen(),
         ),
         GoRoute(
           path: TermsScreen.routePath,

@@ -1,6 +1,7 @@
 import 'package:dolar_hoy/presentation/screens/details_monitors_screen.dart';
 import 'package:dolar_hoy/presentation/screens/terms_screen.dart';
 import 'package:dolar_hoy/presentation/screens/home_screen.dart';
+import 'package:dolar_hoy/presentation/screens/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 
 class MenuItem {
@@ -18,5 +19,11 @@ const appMenuItems = <MenuItem>[
     route: DetailsMonitorsScreen.routeName,
     icon: Icons.currency_exchange,
   ),
-  MenuItem(title: 'Términos y Condiciones', route: TermsScreen.routeName, icon: Icons.info_outline),
+  MenuItem(title: 'Cómo usar', route: TutorialScreen.routeName, icon: Icons.info_outline),
+
+  MenuItem(
+    title: 'Términos y Condiciones',
+    route: TermsScreen.routeName,
+    icon: Icons.perm_device_info_outlined,
+  ),
 ];
