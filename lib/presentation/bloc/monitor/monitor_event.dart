@@ -11,8 +11,8 @@ class MonitorGetData extends MonitorEvent {
   final String currency;
   final String page;
 
-  const MonitorGetData({required this.currency, this.page = 'criptodolar'});
+  const MonitorGetData({required this.currency, required this.page});
 
   @override
-  List<Object> get props => [currency];
+  List<Object> get props => [currency, page];
 }

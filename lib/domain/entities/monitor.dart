@@ -20,8 +20,8 @@ class Monitor {
     required this.changeAmount,
     required this.changePercentage,
     required this.price,
-    required this.pricePrevious,
-    required this.lastUpdate,
+    this.pricePrevious,
+    this.lastUpdate,
   });
 
   String display() {

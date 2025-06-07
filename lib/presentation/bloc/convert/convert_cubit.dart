@@ -1,23 +1,37 @@
 import 'package:bloc/bloc.dart';
 import 'package:dolar_hoy/domain/entities/currency.dart';
 import 'package:dolar_hoy/domain/entities/monitor.dart';
-import 'package:dolar_hoy/presentation/bloc/settings_old/settings_cubit.dart';
+import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'convert_state.dart';
 
 class ConvertCubit extends Cubit<ConvertState> {
-  final SettingsCubit settingsCubit;
+  final SettingBloc settingBloc;
 
-  ConvertCubit({required this.settingsCubit})
+  ConvertCubit({required this.settingBloc})
     : super(
         ConvertState(
           baseAmount: 1,
-          localAmount: settingsCubit.state.monitor.price,
+          localAmount: _getInitialPrice(settingBloc.state),
           localCurrency: Currency.bolivares(),
         ),
       ) {
-    settingsCubit.stream.listen((state) {});
+    // Listen for state changes in the setting bloc
+    settingBloc.stream.listen((state) {
+      // if (state is SettingInitial || state is SettingLoaded) {
+      //   toLocalCurrency(state.monitor, state.monitor.price);
+      // }
+    });
+  }
+
+  static double _getInitialPrice(SettingState state) {
+    if (state is SettingInitial) {
+      return state.monitor.price;
+    } else if (state is SettingLoaded) {
+      return state.monitor.price;
+    }
+    return 0.0;
   }
 
   /// Convierte un monto de la moneda del monitor a la moneda local (ej: USD -> VES)

@@ -8,7 +8,23 @@ sealed class SettingState extends Equatable {
 }
 
 final class SettingInitial extends SettingState {
-  const SettingInitial();
+  final Monitor monitor;
+  final PagesConvertion page;
+
+  SettingInitial()
+    : monitor = Monitor(
+        currency: Currency.dolar(),
+        name: 'Dolar',
+        title: 'Cargando...',
+        image: '',
+        changeAmount: 0,
+        changePercentage: 0,
+        price: 0,
+      ),
+      page = PagesConvertion.bcv;
+
+  @override
+  List<Object> get props => [monitor, page];
 }
 
 final class SettingLoaded extends SettingState {
