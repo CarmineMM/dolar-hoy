@@ -32,8 +32,8 @@ class ListDetailsRatesMonitor extends StatelessWidget {
           itemBuilder: (context, index) {
             final monitor = monitors[index];
 
-            return TextButton(
-              onPressed: () {
+            return GestureDetector(
+              onTap: () {
                 context.read<SettingBloc>().add(SettingSetMonitor(monitor: monitor));
                 convertCubic.toLocalCurrency(monitor, convertCubic.state.baseAmount);
               },
