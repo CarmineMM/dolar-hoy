@@ -1,3 +1,4 @@
+import 'package:dolar_hoy/core/constants/breakpoints.dart';
 import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:dolar_hoy/presentation/layouts/main_layout.dart';
 import 'package:dolar_hoy/presentation/screens/details_monitors_screen.dart';
@@ -6,39 +7,75 @@ import 'package:dolar_hoy/presentation/screens/home_screen.dart';
 import 'package:dolar_hoy/presentation/screens/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import './custom_transitions.dart';
 
-final appRouter = GoRouter(
-  debugLogDiagnostics: Environment.debug,
-  initialLocation: HomeScreen.routePath,
-  routes: [
+// Helper extension to get screen size
+extension ScreenSize on BuildContext {
+  Size get screenSize => MediaQuery.of(this).size;
+
+  bool get isLargeScreen => screenSize.width > Breakpoints.mobile;
+}
+
+// Helper function to create routes with custom transitions
+List<RouteBase> _buildRoutes() {
+  return [
     StatefulShellRoute.indexedStack(
       builder: (BuildContext context, state, child) => MainLayout(child: child),
       branches: <StatefulShellBranch>[
         StatefulShellBranch(
           routes: <GoRoute>[
-            GoRoute(
+            _buildRoute(
               path: HomeScreen.routePath,
               name: HomeScreen.routeName,
-              builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
+              builder: (context, state) => const HomeScreen(),
             ),
-            GoRoute(
+            _buildRoute(
               path: DetailsMonitorsScreen.routePath,
               name: DetailsMonitorsScreen.routeName,
-              builder: (BuildContext context, GoRouterState state) => const DetailsMonitorsScreen(),
+              builder: (context, state) => const DetailsMonitorsScreen(),
             ),
-            GoRoute(
+            _buildRoute(
               path: TutorialScreen.routePath,
               name: TutorialScreen.routeName,
-              builder: (BuildContext context, GoRouterState state) => const TutorialScreen(),
+              builder: (context, state) => const TutorialScreen(),
             ),
-            GoRoute(
+            _buildRoute(
               path: TermsScreen.routePath,
               name: TermsScreen.routeName,
-              builder: (BuildContext context, GoRouterState state) => const TermsScreen(),
+              builder: (context, state) => const TermsScreen(),
             ),
           ],
         ),
       ],
     ),
-  ],
+  ];
+}
+
+// Helper function to create a route with custom transitions
+GoRoute _buildRoute({
+  required String path,
+  required String name,
+  required Widget Function(BuildContext, GoRouterState) builder,
+}) {
+  return GoRoute(
+    path: path,
+    name: name,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      final isLargeScreen = context.isLargeScreen;
+      final child = builder(context, state);
+
+      return CustomTransitions.buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: child,
+        isLargeScreen: isLargeScreen,
+      );
+    },
+  );
+}
+
+final appRouter = GoRouter(
+  debugLogDiagnostics: Environment.debug,
+  initialLocation: HomeScreen.routePath,
+  routes: _buildRoutes(),
 );
