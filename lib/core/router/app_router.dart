@@ -11,28 +11,32 @@ final appRouter = GoRouter(
   debugLogDiagnostics: Environment.debug,
   initialLocation: HomeScreen.routePath,
   routes: [
-    ShellRoute(
+    StatefulShellRoute.indexedStack(
       builder: (BuildContext context, state, child) => MainLayout(child: child),
-      routes: [
-        GoRoute(
-          path: HomeScreen.routePath,
-          name: HomeScreen.routeName,
-          builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
-        ),
-        GoRoute(
-          path: DetailsMonitorsScreen.routePath,
-          name: DetailsMonitorsScreen.routeName,
-          builder: (BuildContext context, GoRouterState state) => const DetailsMonitorsScreen(),
-        ),
-        GoRoute(
-          path: TutorialScreen.routePath,
-          name: TutorialScreen.routeName,
-          builder: (BuildContext context, GoRouterState state) => const TutorialScreen(),
-        ),
-        GoRoute(
-          path: TermsScreen.routePath,
-          name: TermsScreen.routeName,
-          builder: (BuildContext context, GoRouterState state) => const TermsScreen(),
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(
+          routes: <GoRoute>[
+            GoRoute(
+              path: HomeScreen.routePath,
+              name: HomeScreen.routeName,
+              builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
+            ),
+            GoRoute(
+              path: DetailsMonitorsScreen.routePath,
+              name: DetailsMonitorsScreen.routeName,
+              builder: (BuildContext context, GoRouterState state) => const DetailsMonitorsScreen(),
+            ),
+            GoRoute(
+              path: TutorialScreen.routePath,
+              name: TutorialScreen.routeName,
+              builder: (BuildContext context, GoRouterState state) => const TutorialScreen(),
+            ),
+            GoRoute(
+              path: TermsScreen.routePath,
+              name: TermsScreen.routeName,
+              builder: (BuildContext context, GoRouterState state) => const TermsScreen(),
+            ),
+          ],
         ),
       ],
     ),

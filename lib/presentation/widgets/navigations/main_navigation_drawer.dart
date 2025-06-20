@@ -1,3 +1,4 @@
+import 'package:dolar_hoy/core/constants/breakpoints.dart';
 import 'package:dolar_hoy/core/constants/environment.dart';
 import 'package:dolar_hoy/core/menu/menu_items.dart';
 import 'package:dolar_hoy/presentation/widgets/share/branding_app.dart';
@@ -10,11 +11,14 @@ class MainNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final screenSize = MediaQuery.of(context).size;
 
     return NavigationDrawer(
       selectedIndex: -1,
       onDestinationSelected: (value) {
-        Navigator.of(context).pop();
+        if (screenSize.width < Breakpoints.mobile) {
+          Navigator.of(context).pop();
+        }
 
         final menuItem = appMenuItems[value];
 
