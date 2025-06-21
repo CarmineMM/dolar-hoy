@@ -1,5 +1,5 @@
-import 'package:dolar_hoy/core/constants/breakpoints.dart';
 import 'package:dolar_hoy/core/constants/environment.dart';
+import 'package:dolar_hoy/core/extensions/screen_size.dart';
 import 'package:dolar_hoy/presentation/layouts/main_layout.dart';
 import 'package:dolar_hoy/presentation/screens/details_monitors_screen.dart';
 import 'package:dolar_hoy/presentation/screens/terms_screen.dart';
@@ -8,13 +8,6 @@ import 'package:dolar_hoy/presentation/screens/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import './custom_transitions.dart';
-
-// Helper extension to get screen size
-extension ScreenSize on BuildContext {
-  Size get screenSize => MediaQuery.of(this).size;
-
-  bool get isLargeScreen => screenSize.width > Breakpoints.mobile;
-}
 
 // Helper function to create routes with custom transitions
 List<RouteBase> _buildRoutes() {
@@ -61,14 +54,13 @@ GoRoute _buildRoute({
     path: path,
     name: name,
     pageBuilder: (BuildContext context, GoRouterState state) {
-      final isLargeScreen = context.isLargeScreen;
       final child = builder(context, state);
 
       return CustomTransitions.buildPageWithDefaultTransition(
         context: context,
         state: state,
         child: child,
-        isLargeScreen: isLargeScreen,
+        isLargeScreen: context.isTablet,
       );
     },
   );

@@ -1,4 +1,5 @@
 import 'package:dolar_hoy/core/constants/breakpoints.dart';
+import 'package:dolar_hoy/core/extensions/screen_size.dart';
 import 'package:dolar_hoy/presentation/widgets/navigations/main_navigation_drawer.dart';
 import 'package:dolar_hoy/presentation/widgets/navigations/select_page_monitor.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,8 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
-      body: screenSize.width > Breakpoints.mobile
+      body: context.isTablet
           ? Row(
               children: [
                 const Expanded(flex: 1, child: MainNavigationDrawer()),
@@ -24,7 +23,7 @@ class MainLayout extends StatelessWidget {
             )
           : child,
       appBar: AppBar(actions: [const SelectPageMonitor()]),
-      drawer: screenSize.width > Breakpoints.mobile ? null : const MainNavigationDrawer(),
+      drawer: context.isTablet ? null : const MainNavigationDrawer(),
     );
   }
 }
