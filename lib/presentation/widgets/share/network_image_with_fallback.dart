@@ -37,9 +37,6 @@ class NetworkImageWithFallback extends StatelessWidget {
         fit: fit ?? BoxFit.cover,
         headers: headers,
         errorBuilder: (context, error, stackTrace) {
-          debugPrint('Error al cargar la imagen: $error');
-          debugPrint('URL de la imagen: $imageUrl');
-          debugPrint(stackTrace?.toString() ?? 'No hay stacktrace');
           return _buildErrorWidget('Error al cargar imágenes');
         },
         loadingBuilder: (context, child, loadingProgress) {
