@@ -15,7 +15,6 @@ class DetailsMonitorsScreen extends StatelessWidget {
       builder: (context, state) {
         final textTheme = Theme.of(context).textTheme;
         final settingBloc = context.watch<SettingBloc>().state;
-        final colorScheme = Theme.of(context).colorScheme;
 
         // Carga de los monitores
         if (state is MonitorLoading) {

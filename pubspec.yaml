@@ -1,7 +1,7 @@
 name: dolar_hoy
 description: 'Revisa el valor del dolar en Venezuela de forma sencilla y rápida.'
 publish_to: 'none'
-version: 0.2.2
+version: 0.3.0
 
 environment:
     sdk: ^3.8.0

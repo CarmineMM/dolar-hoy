@@ -1,3 +1,4 @@
+import 'package:dolar_hoy/presentation/widgets/action_buttons/share_calculator.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator/calculator_convert.dart';
 import 'package:dolar_hoy/presentation/widgets/form/select_monitor_dropdown.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ class CalculatorCardMonitor extends StatelessWidget {
             ),
             SizedBox(height: 20),
             CalculatorConvert(),
+            SizedBox(height: 20),
+            ShareCalculator(),
           ],
         ),
       ),

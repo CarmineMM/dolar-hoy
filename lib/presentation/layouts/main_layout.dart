@@ -1,4 +1,3 @@
-import 'package:dolar_hoy/core/constants/breakpoints.dart';
 import 'package:dolar_hoy/core/extensions/screen_size.dart';
 import 'package:dolar_hoy/presentation/widgets/navigations/main_navigation_drawer.dart';
 import 'package:dolar_hoy/presentation/widgets/navigations/select_page_monitor.dart';
