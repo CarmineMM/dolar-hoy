@@ -77,7 +77,11 @@ class MainNavigationDrawer extends StatelessWidget {
         const SizedBox(height: 20),
 
         ...appMenuItems.map(
-          (item) => NavigationDrawerDestination(icon: Icon(item.icon), label: Text(item.title)),
+          (item) => NavigationDrawerDestination(
+            icon: Icon(item.icon),
+            label: Text(item.title),
+            selectedIcon: Icon(item.selectedIcon ?? item.icon),
+          ),
         ),
       ],
     );
