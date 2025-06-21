@@ -12,11 +12,11 @@ class SelectMonitorDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final monitor = context.watch<SettingBloc>().state.monitor;
-    final monitorState = context.watch<MonitorBloc>().state as MonitorLoaded;
+    final monitorBloc = context.watch<MonitorBloc>().state as MonitorLoaded;
     final convertCubit = context.read<ConvertCubit>();
 
-    if (monitorState.monitors.isEmpty ||
-        monitorState.monitors.length < 2 ||
+    if (monitorBloc.monitors.isEmpty ||
+        monitorBloc.monitors.length < 2 ||
         monitor.name == Monitor.empty().name) {
       return const SizedBox.shrink();
     }
@@ -24,7 +24,7 @@ class SelectMonitorDropdown extends StatelessWidget {
     return CustomDropdownField<Monitor>(
       value: monitor,
       label: 'Monitor de tasas',
-      items: monitorState.monitors
+      items: monitorBloc.monitors
           .map((monitor) => DropdownMenuItem(value: monitor, child: Text(monitor.title)))
           .toList(),
       onChanged: (value) {

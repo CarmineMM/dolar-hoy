@@ -40,7 +40,9 @@ class ListDetailsRatesMonitor extends StatelessWidget {
               child: ListTile(
                 title: Text(monitor.title),
                 trailing: Text('Bs. ${monitor.price}', style: textTheme.bodyMedium),
-                subtitle: monitor.lastUpdate != null ? Text(monitor.lastUpdateString) : null,
+                subtitle: monitor.lastUpdate != null
+                    ? Text(monitor.lastUpdateString, style: textTheme.bodySmall)
+                    : null,
               ),
             );
           },

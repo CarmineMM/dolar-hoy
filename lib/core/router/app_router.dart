@@ -1,5 +1,4 @@
 import 'package:dolar_hoy/core/constants/environment.dart';
-import 'package:dolar_hoy/core/extensions/screen_size.dart';
 import 'package:dolar_hoy/presentation/layouts/main_layout.dart';
 import 'package:dolar_hoy/presentation/screens/details_monitors_screen.dart';
 import 'package:dolar_hoy/presentation/screens/terms_screen.dart';
@@ -7,7 +6,6 @@ import 'package:dolar_hoy/presentation/screens/home_screen.dart';
 import 'package:dolar_hoy/presentation/screens/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import './custom_transitions.dart';
 
 // Helper function to create routes with custom transitions
 List<RouteBase> _buildRoutes() {
@@ -53,16 +51,17 @@ GoRoute _buildRoute({
   return GoRoute(
     path: path,
     name: name,
-    pageBuilder: (BuildContext context, GoRouterState state) {
-      final child = builder(context, state);
+    builder: (context, state) => builder(context, state),
+    // pageBuilder: (BuildContext context, GoRouterState state) {
+    //   final child = builder(context, state);
 
-      return CustomTransitions.buildPageWithDefaultTransition(
-        context: context,
-        state: state,
-        child: child,
-        isLargeScreen: context.isTablet,
-      );
-    },
+    //   return CustomTransitions.buildPageWithDefaultTransition(
+    //     context: context,
+    //     state: state,
+    //     child: child,
+    //     isLargeScreen: context.isTablet,
+    //   );
+    // },
   );
 }
 

@@ -1,4 +1,5 @@
 import 'package:dolar_hoy/core/constants/breakpoints.dart';
+import 'package:dolar_hoy/core/extensions/screen_size.dart';
 import 'package:dolar_hoy/presentation/bloc/monitor/monitor_bloc.dart';
 import 'package:dolar_hoy/presentation/bloc/setting/setting_bloc.dart';
 import 'package:dolar_hoy/presentation/widgets/calculator/calculator_card_monitor.dart';
@@ -33,8 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-
     return BlocConsumer<MonitorBloc, MonitorState>(
       listener: (context, state) {
         if (state is MonitorLoaded) {
@@ -63,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               child: Column(
                 children: [
-                  screenSize.width > Breakpoints.mobile
+                  context.isTablet
                       // Pantalla grande
                       ? Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
