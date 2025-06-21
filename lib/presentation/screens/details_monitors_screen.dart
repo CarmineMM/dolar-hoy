@@ -63,10 +63,9 @@ class DetailsMonitorsScreen extends StatelessWidget {
                           final monitor = state.monitors[index];
                           return ListTile(
                             leading: CircleAvatar(
-                              backgroundColor: Colors.grey[200],
                               child: Text(
                                 monitor.currency.symbol,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
                               ),
                             ),
                             title: Text(monitor.title, style: textTheme.titleMedium),
